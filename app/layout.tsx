@@ -3,6 +3,7 @@ import { Bebas_Neue, Dancing_Script, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LenisProvider } from '@/components/LenisProvider'
 import { CustomCursor } from '@/components/CustomCursor'
+import { Preloader } from '@/components/Preloader'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -47,6 +48,7 @@ export default function RootLayout({
     >
       <body>
         <LenisProvider>
+          <Preloader />
           <CustomCursor />
           {children}
         </LenisProvider>

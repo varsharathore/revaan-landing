@@ -43,7 +43,7 @@ export function ProductShowcase() {
           </motion.span>
           <motion.h2
             className="font-display mt-6"
-            style={{ fontSize: 'clamp(36px, 6vw, 80px)', color: 'var(--text-primary)' }}
+            style={{ fontSize: 'clamp(56px, 10vw, 9999px)', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
@@ -87,6 +87,13 @@ export function ProductShowcase() {
                 className="relative overflow-hidden mb-3"
                 style={{ height: product.height }}
               >
+                {/* Radial glow — shows on hover */}
+                <div
+                  className="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'radial-gradient(ellipse at 50% 70%, rgba(200,55,26,0.35) 0%, transparent 65%)',
+                  }}
+                />
                 <Image
                   src={product.image}
                   alt={product.name}

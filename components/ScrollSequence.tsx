@@ -11,9 +11,10 @@ const scenes = [
     body: 'Designed for the streets. Worn by those who don\'t ask for permission.',
     cta: 'View Collection',
     leftImage: '/images/citybeats-1.jpg',
-    leftAlt: 'City Beats oversized tee — model shot',
+    leftAlt: 'City Beats oversized tee',
     productImage: '/images/rebel-1.png',
-    productAlt: 'Rebel With Revaan oversized tee',
+    productAlt: 'Rebel With Revaan tee',
+    glowColor: 'rgba(200,55,26,0.4)',
     tag: undefined as string | undefined,
     tagLabel: undefined as string | undefined,
   },
@@ -24,9 +25,10 @@ const scenes = [
     body: '280 GSM · Superior fall. The weight you feel. The statement you make.',
     cta: 'Shop Now',
     leftImage: '/images/pulpy-1.jpg',
-    leftAlt: 'Pulpy oversized tee — model shot',
+    leftAlt: 'Pulpy oversized tee — model',
     productImage: '/images/rebel-2.png',
-    productAlt: 'Rebel With Revaan oversized tee — alternate',
+    productAlt: 'Rebel With Revaan tee — alt',
+    glowColor: 'rgba(200,55,26,0.4)',
     tag: '₹2,199',
     tagLabel: '280 GSM · SUPERIOR FALL',
   },
@@ -39,78 +41,72 @@ const scenes = [
     leftImage: '/images/wavy-1.jpg',
     leftAlt: 'Wavy Core oversized tee — lifestyle',
     productImage: '/images/liar-1.jpg',
-    productAlt: 'Revaan oversized tee — flat lay',
+    productAlt: 'Revaan oversized tee flat lay',
+    glowColor: 'rgba(160,100,60,0.35)',
     tag: undefined as string | undefined,
     tagLabel: 'LIGHTWEIGHT YET DURABLE',
   },
 ]
 
 export function ScrollSequence() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const sceneRefs = useRef<(HTMLDivElement | null)[]>([])
+  const wrapperRef  = useRef<HTMLDivElement>(null)
+  const sceneRefs   = useRef<(HTMLDivElement | null)[]>([])
   const [activeScene, setActiveScene] = useState(0)
-  const [progress, setProgress] = useState(0)
+  const [progress,    setProgress]    = useState(0)
 
   useEffect(() => {
     const wrapper = wrapperRef.current
-    const container = containerRef.current
-    if (!wrapper || !container) return
+    if (!wrapper) return
 
-    const st = ScrollTrigger.create({
-      trigger: wrapper,
-      start: 'top top',
-      end: `+=${scenes.length * 100}vh`,
-      pin: container,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        setProgress(self.progress)
-        const idx = Math.min(Math.floor(self.progress * scenes.length), scenes.length - 1)
-        setActiveScene(idx)
-      },
-    })
-
+    // ONE timeline — scrubs all scene transitions
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
         start: 'top top',
-        end: `+=${scenes.length * 100}vh`,
-        scrub: 1.2,
+        end: 'bottom bottom',   // matches the wrapper's full scroll travel
+        scrub: 1,
+        onUpdate: (self) => {
+          setProgress(self.progress)
+          const idx = Math.min(
+            Math.floor(self.progress * scenes.length),
+            scenes.length - 1
+          )
+          setActiveScene(idx)
+        },
       },
     })
 
-    sceneRefs.current.forEach((scene, i) => {
-      if (i === 0 || !scene) return
+    // Build scene transitions
+    // Timeline total: (scenes.length - 1) units, one per transition
+    scenes.forEach((_, i) => {
+      if (i === 0) return
       const prev = sceneRefs.current[i - 1]
-      const pos = i / scenes.length
-
-      tl.fromTo(
-        scene,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-        pos - 0.3
-      )
-      if (prev) {
-        tl.to(prev, { opacity: 0, y: -30, duration: 0.4 }, pos - 0.3)
-      }
+      const curr = sceneRefs.current[i]
+      // Each transition occupies 1 unit at position (i-1)
+      if (prev) tl.to(prev, { opacity: 0, y: -50, duration: 0.5 }, i - 1)
+      if (curr) tl.fromTo(curr, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6 }, i - 1 + 0.2)
     })
 
     return () => {
-      st.kill()
-      tl.kill()
+      ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])
 
   return (
+    // Outer wrapper: provides the scroll travel height (CSS sticky handles the pin)
     <div
       ref={wrapperRef}
-      style={{ height: `${(scenes.length + 1) * 100}vh` }}
+      style={{ height: `${scenes.length * 100}vh` }}
       id="collection"
     >
+      {/* CSS sticky: stays at top while user scrolls through wrapper height */}
       <div
-        ref={containerRef}
-        className="relative overflow-hidden"
-        style={{ height: '100vh' }}
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+        }}
       >
         {scenes.map((scene, i) => (
           <div
@@ -119,11 +115,8 @@ export function ScrollSequence() {
             className="absolute inset-0 flex"
             style={{ opacity: i === 0 ? 1 : 0 }}
           >
-            {/* ── LEFT: lifestyle image ── */}
-            <div
-              className="relative overflow-hidden"
-              style={{ width: '65%' }}
-            >
+            {/* ── LEFT 65%: lifestyle image ── */}
+            <div className="relative overflow-hidden" style={{ width: '65%' }}>
               <Image
                 src={scene.leftImage}
                 alt={scene.leftAlt}
@@ -132,86 +125,95 @@ export function ScrollSequence() {
                 sizes="65vw"
                 priority={i === 0}
               />
-              {/* Dark overlay so text on top stays readable */}
-              <div
-                className="absolute inset-0"
-                style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 60%, rgba(10,10,10,0.4) 100%)' }}
-              />
+              {/* Vignette */}
+              <div className="absolute inset-0" style={{
+                background: 'linear-gradient(to right, rgba(10,10,10,0.25) 0%, transparent 50%, rgba(10,10,10,0.45) 100%)',
+              }} />
+              <div className="absolute bottom-0 left-0 right-0" style={{
+                height: '35%',
+                background: 'linear-gradient(to top, rgba(10,10,10,0.6), transparent)',
+              }} />
 
-              {/* Scene number watermark */}
+              {/* Large watermark scene number */}
               <span
-                className="font-display select-none pointer-events-none absolute bottom-8 left-10"
-                style={{
-                  fontSize: 'clamp(80px, 14vw, 180px)',
-                  color: 'rgba(255,255,255,0.06)',
-                  lineHeight: 1,
-                  letterSpacing: '-0.02em',
-                }}
+                className="font-display select-none pointer-events-none absolute bottom-6 left-8"
+                style={{ fontSize: 'clamp(100px, 16vw, 220px)', color: 'rgba(255,255,255,0.05)', lineHeight: 1 }}
               >
                 {scene.num}
               </span>
 
-              {/* Bottom label */}
-              <div className="absolute bottom-10 left-10">
-                <p
-                  className="font-body tracking-[0.25em] uppercase"
-                  style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10 }}
-                >
-                  SS25 · Revaan
-                </p>
-              </div>
-
-              {/* Subtle bottom vignette */}
-              <div
-                className="absolute bottom-0 left-0 right-0 pointer-events-none"
-                style={{ height: '30%', background: 'linear-gradient(to top, rgba(10,10,10,0.5), transparent)' }}
-              />
+              <p
+                className="font-body tracking-[0.25em] uppercase absolute bottom-8 left-10"
+                style={{ color: 'rgba(255,255,255,0.35)', fontSize: 10 }}
+              >
+                SS25 · Revaan
+              </p>
             </div>
 
             {/* Separator */}
-            <div style={{ width: '1px', background: 'rgba(255,255,255,0.08)', flexShrink: 0 }} />
+            <div style={{ width: '1px', background: 'rgba(255,255,255,0.07)', flexShrink: 0 }} />
 
-            {/* ── RIGHT: content panel ── */}
+            {/* ── RIGHT 35%: content panel ── */}
             <div
-              className="flex flex-col justify-between py-10 px-8 relative overflow-hidden"
-              style={{ width: '35%', background: '#111111' }}
+              className="flex flex-col justify-between py-10 px-8 relative"
+              style={{
+                width: '35%',
+                background: '#111',
+                // allow headline to bleed past right edge
+                overflow: 'visible',
+              }}
             >
-              {/* Muted scene number */}
+              {/* Muted scene number backdrop */}
               <span
-                className="font-display absolute top-5 right-6 select-none pointer-events-none"
-                style={{ fontSize: '6rem', color: 'rgba(255,255,255,0.04)', lineHeight: 1 }}
+                className="font-display select-none pointer-events-none absolute top-4 right-6"
+                style={{ fontSize: '5.5rem', color: 'rgba(255,255,255,0.04)', lineHeight: 1 }}
               >
                 {scene.num}
               </span>
 
-              {/* Product image */}
-              <div className="flex-1 flex items-center justify-center mt-8">
-                <div
-                  className="relative"
-                  style={{ width: 180, height: 220 }}
-                >
+              {/* Product image with radial glow */}
+              <div className="flex-1 flex items-center justify-center mt-10">
+                <div className="relative" style={{ width: 190, height: 230 }}>
+                  {/* Radial glow layer behind the product */}
+                  <div
+                    className="absolute pointer-events-none"
+                    style={{
+                      inset: '-40px',
+                      background: `radial-gradient(ellipse at 50% 60%, ${scene.glowColor} 0%, transparent 65%)`,
+                      filter: 'blur(24px)',
+                    }}
+                  />
                   <Image
                     src={scene.productImage}
                     alt={scene.productAlt}
                     fill
-                    className="object-contain"
-                    sizes="180px"
+                    className="object-contain relative z-10"
+                    sizes="190px"
+                    style={{ mixBlendMode: 'multiply' }}
                   />
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="space-y-3">
+              {/* Text content */}
+              <div className="space-y-3 relative z-10" style={{ overflow: 'visible' }}>
+                {/* Script label */}
                 <span
                   className="font-script block"
-                  style={{ fontSize: 'clamp(24px, 2.5vw, 40px)', color: 'var(--accent)', lineHeight: 1.1 }}
+                  style={{ fontSize: 'clamp(28px, 3.5vw, 52px)', color: 'var(--accent)', lineHeight: 1 }}
                 >
                   {scene.script}
                 </span>
 
+                {/* Condensed headline — bleeds past right edge */}
                 <h2
                   className="font-display leading-none"
-                  style={{ fontSize: 'clamp(32px, 4vw, 58px)', color: 'var(--text-primary)' }}
+                  style={{
+                    fontSize: 'clamp(72px, 12vw, 9999px)',
+                    color: 'var(--text-primary)',
+                    whiteSpace: 'nowrap',
+                    lineHeight: 0.88,
+                    letterSpacing: '-0.01em',
+                  }}
                 >
                   {scene.headline[0]}
                   <br />
@@ -239,6 +241,7 @@ export function ScrollSequence() {
                   </p>
                 )}
 
+                {/* CTA */}
                 <div className="flex items-center gap-3 pt-1">
                   <span
                     className="font-body text-xs tracking-[0.18em] uppercase"
@@ -248,15 +251,10 @@ export function ScrollSequence() {
                   </span>
                   <span
                     style={{
-                      width: 28,
-                      height: 28,
-                      borderRadius: '50%',
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 12,
-                      color: 'var(--text-muted)',
+                      width: 28, height: 28, borderRadius: '50%',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 12, color: 'var(--text-muted)',
                     }}
                   >
                     ↗
@@ -274,8 +272,7 @@ export function ScrollSequence() {
               key={i}
               style={{
                 width: i === activeScene ? 20 : 5,
-                height: 5,
-                borderRadius: 3,
+                height: 5, borderRadius: 3,
                 background: i === activeScene ? 'var(--accent)' : 'rgba(255,255,255,0.18)',
                 transition: 'all 0.4s ease',
               }}
@@ -283,19 +280,17 @@ export function ScrollSequence() {
           ))}
         </div>
 
-        {/* Right-edge progress */}
+        {/* Right-edge progress line */}
         <div
           className="absolute right-0 top-0 bottom-0 z-20"
           style={{ width: 2, background: 'rgba(255,255,255,0.04)' }}
         >
-          <div
-            style={{
-              width: '100%',
-              height: `${progress * 100}%`,
-              background: 'var(--accent)',
-              transition: 'height 0.1s linear',
-            }}
-          />
+          <div style={{
+            width: '100%',
+            height: `${progress * 100}%`,
+            background: 'var(--accent)',
+            transition: 'height 0.1s linear',
+          }} />
         </div>
       </div>
     </div>

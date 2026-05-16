@@ -17,7 +17,7 @@ export function StatementSection() {
       <div className="relative">
         <motion.h2
           className="font-display leading-none overflow-hidden"
-          style={{ fontSize: 'clamp(60px, 14vw, 200px)', color: 'var(--text-primary)' }}
+          style={{ fontSize: 'clamp(80px, 18vw, 9999px)', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}
           initial={{ clipPath: 'inset(0 100% 0 0)' }}
           animate={inView ? { clipPath: 'inset(0 0% 0 0)' } : {}}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
@@ -27,7 +27,7 @@ export function StatementSection() {
 
         <motion.h2
           className="font-display leading-none overflow-hidden"
-          style={{ fontSize: 'clamp(60px, 14vw, 200px)', color: 'var(--text-muted)' }}
+          style={{ fontSize: 'clamp(80px, 18vw, 9999px)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}
           initial={{ clipPath: 'inset(0 100% 0 0)' }}
           animate={inView ? { clipPath: 'inset(0 0% 0 0)' } : {}}
           transition={{ duration: 1, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}

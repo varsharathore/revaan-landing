@@ -48,7 +48,7 @@ export function DropSignup() {
         {/* Headline */}
         <motion.h2
           className="font-display leading-none mb-8"
-          style={{ fontSize: 'clamp(48px, 8vw, 100px)', color: 'var(--text-primary)' }}
+          style={{ fontSize: 'clamp(72px, 14vw, 9999px)', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
