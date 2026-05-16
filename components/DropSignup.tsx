@@ -2,6 +2,8 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 
+const BEBAS = '"Bebas Neue", var(--font-bebas), sans-serif'
+
 export function DropSignup() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
@@ -17,23 +19,33 @@ export function DropSignup() {
     <section
       id="drop"
       ref={ref}
-      className="relative py-32 px-8 md:px-16 flex flex-col items-center text-center overflow-hidden"
-      style={{ background: 'var(--bg)' }}
+      className="relative flex flex-col items-center text-center"
+      style={{ background: 'var(--bg)', paddingTop: '6rem', paddingBottom: '6rem', overflow: 'hidden' }}
     >
-      {/* Large muted background text */}
+      {/*
+        "DROP" — faint background TEXTURE only. Sits behind everything.
+        Separate from the CTA headline.
+      */}
       <span
-        className="font-display absolute inset-0 flex items-center justify-center select-none pointer-events-none"
+        className="select-none pointer-events-none absolute"
         style={{
-          fontSize: 'clamp(120px, 25vw, 360px)',
-          color: 'rgba(255,255,255,0.03)',
+          fontFamily: BEBAS,
+          fontSize: 'clamp(200px, 40vw, 600px)',
+          color: 'rgba(255,255,255,0.025)',
           lineHeight: 1,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          whiteSpace: 'nowrap',
           zIndex: 0,
         }}
+        aria-hidden
       >
         DROP
       </span>
 
-      <div className="relative z-10 max-w-lg w-full">
+      {/* All CTA content sits above the DROP texture */}
+      <div className="relative z-10 px-8" style={{ maxWidth: 640, width: '100%' }}>
         {/* Tag */}
         <motion.span
           className="inline-block font-body text-xs tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-6"
@@ -45,30 +57,42 @@ export function DropSignup() {
           NEVER MISS A DROP
         </motion.span>
 
-        {/* Headline */}
-        <motion.h2
-          className="font-display leading-none mb-8"
-          style={{ fontSize: 'clamp(72px, 14vw, 9999px)', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}
+        {/*
+          "GET FIRST ACCESS" — the actual CTA headline.
+          Contained with overflow visible so it reads fully.
+          NOT the background texture.
+        */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
+          style={{ overflow: 'visible' }}
         >
-          GET FIRST ACCESS
-        </motion.h2>
+          <h2
+            style={{
+              fontFamily: BEBAS,
+              fontSize: 'clamp(60px, 10vw, 140px)',
+              color: 'var(--text-primary)',
+              lineHeight: 0.9,
+              marginBottom: '2rem',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            GET FIRST ACCESS
+          </h2>
+        </motion.div>
 
         {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
-          className="flex gap-0"
+          className="flex"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ maxWidth: 480, margin: '0 auto' }}
         >
           {submitted ? (
-            <p
-              className="font-body text-sm w-full py-4"
-              style={{ color: 'var(--accent)' }}
-            >
+            <p className="font-body text-sm w-full py-4" style={{ color: 'var(--accent)' }}>
               You&apos;re in. We&apos;ll hit you first.
             </p>
           ) : (
@@ -81,7 +105,7 @@ export function DropSignup() {
                 onChange={e => setEmail(e.target.value)}
                 className="flex-1 px-5 py-4 font-body text-sm bg-transparent outline-none"
                 style={{
-                  border: '1px solid rgba(255,255,255,0.2)',
+                  border: '1px solid rgba(255,255,255,0.18)',
                   borderRight: 'none',
                   color: 'var(--text-primary)',
                   cursor: 'none',
@@ -90,18 +114,9 @@ export function DropSignup() {
               <button
                 type="submit"
                 className="font-body text-xs tracking-[0.2em] uppercase px-6 py-4 transition-colors duration-300"
-                style={{
-                  background: 'var(--accent)',
-                  color: 'var(--text-primary)',
-                  cursor: 'none',
-                  border: '1px solid var(--accent)',
-                }}
-                onMouseEnter={e => {
-                  ;(e.currentTarget as HTMLElement).style.background = 'var(--accent-bright)'
-                }}
-                onMouseLeave={e => {
-                  ;(e.currentTarget as HTMLElement).style.background = 'var(--accent)'
-                }}
+                style={{ background: 'var(--accent)', color: 'var(--text-primary)', cursor: 'none', border: '1px solid var(--accent)', whiteSpace: 'nowrap' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--accent-bright)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'var(--accent)' }}
               >
                 JOIN
               </button>

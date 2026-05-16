@@ -96,17 +96,17 @@ export function MaterialsAccordion() {
       {/* Heading */}
       <div className="mb-16 relative">
         <motion.span
-          className="font-script absolute -top-4 left-0"
-          style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}
-          initial={{ opacity: 0, rotate: -3 }}
-          animate={inView ? { opacity: 1, rotate: 0 } : {}}
+          className="font-script absolute left-0"
+          style={{ fontSize: 'clamp(64px, 9vw, 130px)', color: 'var(--accent)', top: '-0.5em', lineHeight: 1 }}
+          initial={{ opacity: 0, rotate: -5 }}
+          animate={inView ? { opacity: 1, rotate: -2 } : {}}
           transition={{ duration: 0.8 }}
         >
           Craft
         </motion.span>
         <motion.h2
-          className="font-display mt-10"
-          style={{ fontSize: 'clamp(36px, 6vw, 80px)', color: 'var(--text-primary)' }}
+          className="font-display mt-16"
+          style={{ fontFamily: '"Bebas Neue", var(--font-bebas), sans-serif', fontSize: 'clamp(56px, 9vw, 120px)', color: 'var(--text-primary)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}

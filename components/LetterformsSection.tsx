@@ -3,132 +3,137 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'motion/react'
 
+const BEBAS = '"Bebas Neue", var(--font-bebas), sans-serif'
+
 export function LetterformsSection() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-5%' })
 
   return (
-    // No horizontal padding — letters bleed to edges
+    // Zero padding — letters bleed to every edge
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-center overflow-hidden"
-      style={{ height: '100vh', background: 'var(--bg)', padding: 0 }}
+      className="relative flex flex-col items-center justify-center"
+      style={{ height: '100vh', background: 'var(--bg)', overflow: 'hidden', padding: 0 }}
     >
-      {/* Ambient glow behind letters */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 55%, rgba(200,55,26,0.09) 0%, transparent 70%)',
-        }}
-      />
+      {/* Atmospheric glow behind letters */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 90% 60% at 50% 50%, rgba(200,55,26,0.11) 0%, transparent 65%)',
+      }} />
 
-      {/* REVAAN — so large it clips left and right edges */}
       <motion.div
-        className="relative w-full text-center"
-        initial={{ opacity: 0, y: 80 }}
+        className="relative w-full"
+        style={{ textAlign: 'center' }}
+        initial={{ opacity: 0, y: 100 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
+        {/*
+          22vw font-size. At 1440px viewport: 316px per character × 6 chars ≈ 1900px wide.
+          Viewport is 1440px. Overflow: hidden on section clips L and R edges.
+          Result: R clips left edge, N clips right edge.
+        */}
         <h2
-          className="font-display leading-none select-none"
+          className="select-none relative"
           style={{
-            fontSize: 'clamp(140px, 28vw, 9999px)',
-            WebkitTextStroke: '1.5px rgba(245,240,232,0.65)',
+            fontFamily: BEBAS,
+            fontSize: '22vw',
+            WebkitTextStroke: '1.5px rgba(245,240,232,0.6)',
             color: 'transparent',
-            letterSpacing: '0.04em',
+            letterSpacing: '0.06em',
             lineHeight: 0.85,
-            // Bleed past viewport edges
-            margin: '0 -10vw',
+            whiteSpace: 'nowrap',
+            // Extend past both edges so R and N clip
+            margin: '0 -8vw',
             display: 'block',
           }}
         >
           REVAAN
         </h2>
 
-        {/* Product images floating through the letterforms */}
+        {/* Products inside the letterforms — positioned relative to the h2 */}
         <div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          style={{ zIndex: 10 }}
+          className="absolute pointer-events-none"
+          style={{
+            // Sits over the letter row
+            top: 0, left: 0, right: 0, bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '4vw',
+          }}
         >
-          {/* Product 1 — through V, with glow */}
+          {/* Product 1 — through V/E gap */}
           <div
             className="relative flex-shrink-0"
             style={{
-              width: 'clamp(90px, 11vw, 160px)',
-              height: 'clamp(120px, 16vw, 220px)',
-              marginTop: '-3%',
-              marginLeft: '8%',
+              width: 'clamp(120px, 14vw, 210px)',
+              height: 'clamp(160px, 19vw, 290px)',
+              marginTop: '-4%',
+              marginLeft: '6%',
             }}
           >
-            {/* Radial glow behind product */}
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                inset: '-35px',
-                background: 'radial-gradient(ellipse at 50% 60%, rgba(200,55,26,0.4) 0%, transparent 65%)',
-                filter: 'blur(20px)',
-              }}
-            />
+            {/* Glow */}
+            <div className="absolute pointer-events-none" style={{
+              inset: '-40px',
+              background: 'radial-gradient(ellipse at 50% 55%, rgba(200,55,26,0.5) 0%, transparent 60%)',
+              filter: 'blur(24px)',
+            }} />
             <Image
               src="/images/rebel-1.png"
-              alt="Rebel With Revaan tee"
+              alt="Rebel tee through letterform"
               fill
               className="object-contain relative z-10"
-              sizes="160px"
+              sizes="210px"
               style={{ mixBlendMode: 'multiply' }}
             />
           </div>
 
-          {/* Product 2 — through A, with glow */}
+          {/* Product 2 — through A/N gap */}
           <div
             className="relative flex-shrink-0"
             style={{
-              width: 'clamp(75px, 9vw, 130px)',
-              height: 'clamp(100px, 13vw, 185px)',
-              marginTop: '9%',
-              marginLeft: '3%',
+              width: 'clamp(100px, 12vw, 180px)',
+              height: 'clamp(135px, 17vw, 250px)',
+              marginTop: '12%',
+              marginLeft: '2%',
             }}
           >
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                inset: '-30px',
-                background: 'radial-gradient(ellipse at 50% 60%, rgba(200,55,26,0.35) 0%, transparent 65%)',
-                filter: 'blur(18px)',
-              }}
-            />
+            <div className="absolute pointer-events-none" style={{
+              inset: '-35px',
+              background: 'radial-gradient(ellipse at 50% 55%, rgba(200,55,26,0.45) 0%, transparent 60%)',
+              filter: 'blur(20px)',
+            }} />
             <Image
               src="/images/rebel-2.png"
-              alt="Rebel With Revaan tee — alt"
+              alt="Rebel tee — alt"
               fill
               className="object-contain relative z-10"
-              sizes="130px"
+              sizes="180px"
               style={{ mixBlendMode: 'multiply' }}
             />
           </div>
         </div>
-
-        {/* Script signature */}
-        <motion.span
-          className="font-script block mt-5 relative z-20"
-          style={{ fontSize: 'clamp(28px, 4vw, 60px)', color: 'var(--accent)' }}
-          initial={{ opacity: 0, rotate: -3 }}
-          animate={inView ? { opacity: 1, rotate: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Revaan
-        </motion.span>
       </motion.div>
 
-      {/* SS25 — bottom left */}
-      <p
-        className="font-body tracking-[0.3em] uppercase absolute bottom-10 left-8"
-        style={{ color: 'var(--text-muted)', fontSize: 10 }}
+      {/* Script signature — centered below letters */}
+      <motion.span
+        className="font-script relative z-10 mt-4"
+        style={{ fontSize: 'clamp(32px, 4.5vw, 64px)', color: 'var(--accent)' }}
+        initial={{ opacity: 0, rotate: -3 }}
+        animate={inView ? { opacity: 1, rotate: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.5 }}
       >
+        Revaan
+      </motion.span>
+
+      {/* SS25 bottom-left */}
+      <p className="font-body tracking-[0.3em] uppercase absolute bottom-10 left-8"
+        style={{ color: 'var(--text-muted)', fontSize: 10 }}>
         SS25
       </p>
 
-      {/* CTA */}
+      {/* CTA pill bottom-center */}
       <motion.a
         href="https://berevaan.com"
         target="_blank"
@@ -137,7 +142,7 @@ export function LetterformsSection() {
         style={{ background: 'var(--accent)', color: 'var(--text-primary)', cursor: 'none' }}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
         whileHover={{ backgroundColor: '#E8431F', scale: 1.03 }}
       >
         EXPLORE THE COLLECTION →

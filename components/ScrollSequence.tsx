@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 
+const BEBAS = '"Bebas Neue", var(--font-bebas), sans-serif'
+
 const scenes = [
   {
     num: '01',
@@ -14,7 +16,7 @@ const scenes = [
     leftAlt: 'City Beats oversized tee',
     productImage: '/images/rebel-1.png',
     productAlt: 'Rebel With Revaan tee',
-    glowColor: 'rgba(200,55,26,0.4)',
+    glowColor: 'rgba(200,55,26,0.45)',
     tag: undefined as string | undefined,
     tagLabel: undefined as string | undefined,
   },
@@ -28,7 +30,7 @@ const scenes = [
     leftAlt: 'Pulpy oversized tee — model',
     productImage: '/images/rebel-2.png',
     productAlt: 'Rebel With Revaan tee — alt',
-    glowColor: 'rgba(200,55,26,0.4)',
+    glowColor: 'rgba(200,55,26,0.45)',
     tag: '₹2,199',
     tagLabel: '280 GSM · SUPERIOR FALL',
   },
@@ -42,7 +44,7 @@ const scenes = [
     leftAlt: 'Wavy Core oversized tee — lifestyle',
     productImage: '/images/liar-1.jpg',
     productAlt: 'Revaan oversized tee flat lay',
-    glowColor: 'rgba(160,100,60,0.35)',
+    glowColor: 'rgba(160,90,40,0.38)',
     tag: undefined as string | undefined,
     tagLabel: 'LIGHTWEIGHT YET DURABLE',
   },
@@ -58,13 +60,17 @@ export function ScrollSequence() {
     const wrapper = wrapperRef.current
     if (!wrapper) return
 
-    // ONE timeline — scrubs all scene transitions
+    // Set z-indexes so later scenes stack on top — scene 0 is always underneath
+    sceneRefs.current.forEach((el, i) => {
+      if (el) gsap.set(el, { zIndex: i, opacity: i === 0 ? 1 : 0 })
+    })
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
         start: 'top top',
-        end: 'bottom bottom',   // matches the wrapper's full scroll travel
-        scrub: 1,
+        end: 'bottom bottom',
+        scrub: 1.4,
         onUpdate: (self) => {
           setProgress(self.progress)
           const idx = Math.min(
@@ -76,46 +82,34 @@ export function ScrollSequence() {
       },
     })
 
-    // Build scene transitions
-    // Timeline total: (scenes.length - 1) units, one per transition
+    // Crossfade: each incoming scene fades IN on top of the previous.
+    // Previous scene stays fully visible underneath — no black gap ever.
     scenes.forEach((_, i) => {
       if (i === 0) return
-      const prev = sceneRefs.current[i - 1]
       const curr = sceneRefs.current[i]
-      // Each transition occupies 1 unit at position (i-1)
-      if (prev) tl.to(prev, { opacity: 0, y: -50, duration: 0.5 }, i - 1)
-      if (curr) tl.fromTo(curr, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6 }, i - 1 + 0.2)
+      if (!curr) return
+      // Incoming scene fades in at timeline position (i-1)
+      tl.fromTo(curr, { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power1.inOut' }, i - 1)
     })
 
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
-    }
+    return () => ScrollTrigger.getAll().forEach(t => t.kill())
   }, [])
 
   return (
-    // Outer wrapper: provides the scroll travel height (CSS sticky handles the pin)
     <div
       ref={wrapperRef}
       style={{ height: `${scenes.length * 100}vh` }}
       id="collection"
     >
-      {/* CSS sticky: stays at top while user scrolls through wrapper height */}
-      <div
-        style={{
-          position: 'sticky',
-          top: 0,
-          height: '100vh',
-          overflow: 'hidden',
-        }}
-      >
+      {/* CSS sticky — viewport locks without GSAP pin conflicts */}
+      <div style={{ position: 'sticky', top: 0, height: '100vh' }}>
         {scenes.map((scene, i) => (
           <div
             key={i}
             ref={(el) => { sceneRefs.current[i] = el }}
             className="absolute inset-0 flex"
-            style={{ opacity: i === 0 ? 1 : 0 }}
           >
-            {/* ── LEFT 65%: lifestyle image ── */}
+            {/* ── LEFT 65%: lifestyle image with warm red glow overlay ── */}
             <div className="relative overflow-hidden" style={{ width: '65%' }}>
               <Image
                 src={scene.leftImage}
@@ -125,27 +119,39 @@ export function ScrollSequence() {
                 sizes="65vw"
                 priority={i === 0}
               />
-              {/* Vignette */}
-              <div className="absolute inset-0" style={{
-                background: 'linear-gradient(to right, rgba(10,10,10,0.25) 0%, transparent 50%, rgba(10,10,10,0.45) 100%)',
+
+              {/* Warm red radial glow — brands the photo to Revaan palette */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(ellipse 70% 80% at 40% 55%, ${scene.glowColor} 0%, transparent 65%)`,
+                }}
+              />
+
+              {/* Edge vignettes */}
+              <div className="absolute inset-0 pointer-events-none" style={{
+                background: 'linear-gradient(to right, rgba(10,10,10,0.5) 0%, transparent 30%, rgba(10,10,10,0.5) 100%)',
               }} />
-              <div className="absolute bottom-0 left-0 right-0" style={{
-                height: '35%',
-                background: 'linear-gradient(to top, rgba(10,10,10,0.6), transparent)',
+              <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{
+                height: '40%',
+                background: 'linear-gradient(to top, rgba(10,10,10,0.7), transparent)',
               }} />
 
-              {/* Large watermark scene number */}
+              {/* Watermark scene number */}
               <span
-                className="font-display select-none pointer-events-none absolute bottom-6 left-8"
-                style={{ fontSize: 'clamp(100px, 16vw, 220px)', color: 'rgba(255,255,255,0.05)', lineHeight: 1 }}
+                className="absolute bottom-6 left-8 select-none pointer-events-none"
+                style={{
+                  fontFamily: BEBAS,
+                  fontSize: 'clamp(120px, 18vw, 260px)',
+                  color: 'rgba(255,255,255,0.05)',
+                  lineHeight: 1,
+                }}
               >
                 {scene.num}
               </span>
 
-              <p
-                className="font-body tracking-[0.25em] uppercase absolute bottom-8 left-10"
-                style={{ color: 'rgba(255,255,255,0.35)', fontSize: 10 }}
-              >
+              <p className="absolute bottom-9 left-12 font-body tracking-[0.25em] uppercase"
+                style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10 }}>
                 SS25 · Revaan
               </p>
             </div>
@@ -153,49 +159,59 @@ export function ScrollSequence() {
             {/* Separator */}
             <div style={{ width: '1px', background: 'rgba(255,255,255,0.07)', flexShrink: 0 }} />
 
-            {/* ── RIGHT 35%: content panel ── */}
+            {/* ── RIGHT 35%: product + content ── */}
             <div
-              className="flex flex-col justify-between py-10 px-8 relative"
+              className="flex flex-col relative"
               style={{
                 width: '35%',
                 background: '#111',
-                // allow headline to bleed past right edge
-                overflow: 'visible',
+                // Intentional: allow headlines to bleed past right edge
               }}
             >
               {/* Muted scene number backdrop */}
               <span
-                className="font-display select-none pointer-events-none absolute top-4 right-6"
-                style={{ fontSize: '5.5rem', color: 'rgba(255,255,255,0.04)', lineHeight: 1 }}
+                className="select-none pointer-events-none absolute top-4 right-4"
+                style={{
+                  fontFamily: BEBAS,
+                  fontSize: '5rem',
+                  color: 'rgba(255,255,255,0.04)',
+                  lineHeight: 1,
+                }}
               >
                 {scene.num}
               </span>
 
-              {/* Product image with radial glow */}
-              <div className="flex-1 flex items-center justify-center mt-10">
-                <div className="relative" style={{ width: 190, height: 230 }}>
-                  {/* Radial glow layer behind the product */}
-                  <div
-                    className="absolute pointer-events-none"
-                    style={{
-                      inset: '-40px',
-                      background: `radial-gradient(ellipse at 50% 60%, ${scene.glowColor} 0%, transparent 65%)`,
-                      filter: 'blur(24px)',
-                    }}
-                  />
+              {/* ── PRODUCT IMAGE — dominant, fills top of panel ── */}
+              <div
+                className="relative flex items-center justify-center"
+                style={{ flex: '1 1 0', minHeight: 0, padding: '40px 24px 20px' }}
+              >
+                {/* Radial glow behind product */}
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    inset: 0,
+                    background: `radial-gradient(ellipse 80% 70% at 50% 55%, ${scene.glowColor} 0%, transparent 65%)`,
+                    filter: 'blur(30px)',
+                  }}
+                />
+                <div className="relative w-full h-full">
                   <Image
                     src={scene.productImage}
                     alt={scene.productAlt}
                     fill
-                    className="object-contain relative z-10"
-                    sizes="190px"
+                    className="object-contain"
+                    sizes="(max-width: 1200px) 35vw, 420px"
                     style={{ mixBlendMode: 'multiply' }}
                   />
                 </div>
               </div>
 
-              {/* Text content */}
-              <div className="space-y-3 relative z-10" style={{ overflow: 'visible' }}>
+              {/* ── CONTENT ── */}
+              <div
+                className="flex-shrink-0 px-8 pb-10 space-y-3 relative z-10"
+                style={{ overflow: 'visible' }}
+              >
                 {/* Script label */}
                 <span
                   className="font-script block"
@@ -204,15 +220,16 @@ export function ScrollSequence() {
                   {scene.script}
                 </span>
 
-                {/* Condensed headline — bleeds past right edge */}
+                {/* Condensed headline — bleeds past right edge intentionally */}
                 <h2
-                  className="font-display leading-none"
                   style={{
-                    fontSize: 'clamp(72px, 12vw, 9999px)',
+                    fontFamily: BEBAS,
+                    fontSize: 'clamp(72px, 13vw, 9999px)',
                     color: 'var(--text-primary)',
-                    whiteSpace: 'nowrap',
                     lineHeight: 0.88,
                     letterSpacing: '-0.01em',
+                    whiteSpace: 'nowrap',
+                    // overflow visible so it bleeds right
                   }}
                 >
                   {scene.headline[0]}
@@ -222,43 +239,35 @@ export function ScrollSequence() {
 
                 <p
                   className="font-body text-sm leading-relaxed"
-                  style={{ color: 'var(--text-muted)', maxWidth: 240 }}
+                  style={{ color: 'var(--text-muted)', maxWidth: 260 }}
                 >
                   {scene.body}
                 </p>
 
                 {scene.tag && (
-                  <p className="font-body" style={{ color: 'var(--text-primary)', fontSize: 18 }}>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--text-primary)', fontSize: 18 }}>
                     {scene.tag}
                   </p>
                 )}
                 {scene.tagLabel && (
-                  <p
-                    className="font-body tracking-[0.2em] uppercase"
-                    style={{ color: 'var(--text-muted)', fontSize: 9 }}
-                  >
+                  <p className="font-body tracking-[0.2em] uppercase"
+                    style={{ color: 'var(--text-muted)', fontSize: 9 }}>
                     {scene.tagLabel}
                   </p>
                 )}
 
                 {/* CTA */}
                 <div className="flex items-center gap-3 pt-1">
-                  <span
-                    className="font-body text-xs tracking-[0.18em] uppercase"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
+                  <span className="font-body text-xs tracking-[0.18em] uppercase"
+                    style={{ color: 'var(--text-muted)' }}>
                     {scene.cta}
                   </span>
-                  <span
-                    style={{
-                      width: 28, height: 28, borderRadius: '50%',
-                      border: '1px solid rgba(255,255,255,0.18)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 12, color: 'var(--text-muted)',
-                    }}
-                  >
-                    ↗
-                  </span>
+                  <span style={{
+                    width: 28, height: 28, borderRadius: '50%',
+                    border: '1px solid rgba(255,255,255,0.18)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 12, color: 'var(--text-muted)',
+                  }}>↗</span>
                 </div>
               </div>
             </div>
@@ -266,31 +275,19 @@ export function ScrollSequence() {
         ))}
 
         {/* Scene dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-30 pointer-events-none">
           {scenes.map((_, i) => (
-            <div
-              key={i}
-              style={{
-                width: i === activeScene ? 20 : 5,
-                height: 5, borderRadius: 3,
-                background: i === activeScene ? 'var(--accent)' : 'rgba(255,255,255,0.18)',
-                transition: 'all 0.4s ease',
-              }}
-            />
+            <div key={i} style={{
+              width: i === activeScene ? 20 : 5, height: 5, borderRadius: 3,
+              background: i === activeScene ? 'var(--accent)' : 'rgba(255,255,255,0.18)',
+              transition: 'all 0.4s ease',
+            }} />
           ))}
         </div>
 
-        {/* Right-edge progress line */}
-        <div
-          className="absolute right-0 top-0 bottom-0 z-20"
-          style={{ width: 2, background: 'rgba(255,255,255,0.04)' }}
-        >
-          <div style={{
-            width: '100%',
-            height: `${progress * 100}%`,
-            background: 'var(--accent)',
-            transition: 'height 0.1s linear',
-          }} />
+        {/* Right-edge progress */}
+        <div className="absolute right-0 top-0 bottom-0 z-30" style={{ width: 2, background: 'rgba(255,255,255,0.04)' }}>
+          <div style={{ width: '100%', height: `${progress * 100}%`, background: 'var(--accent)', transition: 'height 0.1s linear' }} />
         </div>
       </div>
     </div>

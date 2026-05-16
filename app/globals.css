@@ -65,10 +65,10 @@ body {
   height: 48px;
 }
 
-/* Typography helpers */
-.font-display { font-family: var(--font-bebas), 'Bebas Neue', sans-serif; }
-.font-script  { font-family: var(--font-dancing), 'Dancing Script', cursive; }
-.font-body    { font-family: var(--font-dm-sans), 'DM Sans', sans-serif; }
+/* Typography helpers — explicit stacks so font renders even if CSS var resolves slowly */
+.font-display { font-family: 'Bebas Neue', var(--font-bebas), Impact, sans-serif; font-weight: 400; }
+.font-script  { font-family: 'Dancing Script', var(--font-dancing), cursive; }
+.font-body    { font-family: 'DM Sans', var(--font-dm-sans), system-ui, sans-serif; }
 
 /* Underline hover from left */
 .hover-underline {
