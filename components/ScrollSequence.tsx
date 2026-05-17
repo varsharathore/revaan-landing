@@ -14,14 +14,14 @@ const scenes = [
     headline: ['BE', 'UNAPOLOGETIC'],
     body: 'Designed for the streets. Worn by those who don\'t ask for permission.',
     cta: 'View Collection',
-    leftImage: '/images/citybeats-1.jpg',
-    leftAlt: 'City Beats tee',
+    // White-bg images together — consistent background throughout the hero
+    leftImage: '/images/liar-1.jpg',
+    leftAlt: 'F*cking Liar tee — group',
     productImage: '/images/rebel-1.png',
     productAlt: 'Rebel With Revaan tee',
-    // Right panel bg = exact bg of rebel-1.png (warm cream)
     panelBg: '#F5F0E5',
     textHead: '#141210',
-    textBody: '#5A5450',
+    textBody: '#6A6460',
     scriptColor: '#C8371A',
     tag: undefined as string | undefined,
     tagLabel: undefined as string | undefined,
@@ -33,14 +33,13 @@ const scenes = [
     headline: ['REBEL WITH', 'REVAAN'],
     body: '280 GSM · Superior fall. The weight you feel. The statement you make.',
     cta: 'Shop Now',
-    leftImage: '/images/pulpy-1.jpg',
-    leftAlt: 'Pulpy oversized tee — model',
-    productImage: '/images/rebel-2.png',
-    productAlt: 'Rebel tee — back view, concrete',
-    // Right panel bg = exact bg of rebel-2.png (concrete gray)
-    panelBg: '#B8B5B0',
-    textHead: '#111110',
-    textBody: '#3D3C3A',
+    leftImage: '/images/wavy-1.jpg',
+    leftAlt: 'Wavy Core tee — couple, white bg',
+    productImage: '/images/liar-2.jpg',
+    productAlt: 'F*cking Liar tee — solo',
+    panelBg: '#EFECEA',
+    textHead: '#141210',
+    textBody: '#6A6460',
     scriptColor: '#C8371A',
     tag: '₹2,199',
     tagLabel: '280 GSM · SUPERIOR FALL',
@@ -52,14 +51,13 @@ const scenes = [
     headline: ['BUILT', 'TO LAST'],
     body: 'Lightweight yet durable. Every thread engineered for the long run.',
     cta: 'Our Story',
-    leftImage: '/images/wavy-1.jpg',
-    leftAlt: 'Wavy Core tee — lifestyle',
-    productImage: '/images/liar-1.jpg',
-    productAlt: 'F*cking Liar tee group',
-    // Right panel bg = exact bg of liar-1.jpg (near-white)
-    panelBg: '#EFECEA',
+    leftImage: '/images/pulpy-1.jpg',
+    leftAlt: 'Pulpy tee — model, white bg',
+    productImage: '/images/pulpy-2.jpg',
+    productAlt: 'Pulpy tee — group, white bg',
+    panelBg: '#F3F1EE',
     textHead: '#141210',
-    textBody: '#565250',
+    textBody: '#6A6460',
     scriptColor: '#C8371A',
     tag: undefined as string | undefined,
     tagLabel: 'LIGHTWEIGHT YET DURABLE',
@@ -135,22 +133,16 @@ export function ScrollSequence() {
                 sizes="65vw"
                 priority={i === 0}
               />
-              <div className="absolute inset-0 pointer-events-none" style={{
-                background: 'linear-gradient(to right, rgba(10,10,10,0.4) 0%, transparent 25%, rgba(10,10,10,0.3) 100%)',
-              }} />
-              <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{
-                height: '35%', background: 'linear-gradient(to top, rgba(10,10,10,0.6), transparent)',
-              }} />
+              {/* Watermark number — dark on light photos */}
               <span className="absolute bottom-6 left-8 select-none pointer-events-none" style={{
                 fontFamily: BEBAS, fontSize: 'clamp(100px, 16vw, 200px)',
-                color: 'rgba(10,10,10,0.08)', lineHeight: 1,
+                color: 'rgba(20,18,16,0.06)', lineHeight: 1,
               }}>{scene.num}</span>
               <p className="absolute bottom-9 left-12 font-body tracking-[0.25em] uppercase"
-                style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10 }}>SS25 · Revaan</p>
+                style={{ color: 'rgba(20,18,16,0.35)', fontSize: 10 }}>SS25 · Revaan</p>
             </div>
 
-            {/* Separator */}
-            <div style={{ width: '1px', background: 'rgba(0,0,0,0.15)', flexShrink: 0 }} />
+            <div style={{ width: '1px', background: 'rgba(20,18,16,0.12)', flexShrink: 0 }} />
 
             {/* ── RIGHT 35%: bg = exact product photo background ── */}
             <div
@@ -235,13 +227,13 @@ export function ScrollSequence() {
           {scenes.map((_, i) => (
             <div key={i} style={{
               width: i === activeScene ? 20 : 5, height: 5, borderRadius: 3,
-              background: i === activeScene ? 'var(--accent)' : 'rgba(255,255,255,0.18)',
+              background: i === activeScene ? 'var(--accent)' : 'rgba(20,18,16,0.2)',
               transition: 'all 0.4s ease',
             }} />
           ))}
         </div>
 
-        <div className="absolute right-0 top-0 bottom-0 z-30" style={{ width: 2, background: 'rgba(255,255,255,0.04)' }}>
+        <div className="absolute right-0 top-0 bottom-0 z-30" style={{ width: 2, background: 'rgba(20,18,16,0.06)' }}>
           <div style={{ width: '100%', height: `${progress * 100}%`, background: 'var(--accent)', transition: 'height 0.1s linear' }} />
         </div>
       </div>

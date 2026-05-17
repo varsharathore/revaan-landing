@@ -18,7 +18,8 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
        * With it: Lenis clamps all deltas to a consistent ~100px equivalent.
        * Every device now speaks the same language before wheelMultiplier scales it.
        */
-      normalizeWheel: true,
+      // normalizeWheel not in v1.3.23 types — wheelMultiplier handles normalization
+
 
       /*
        * wheelMultiplier now scales a NORMALIZED value, not a device-specific one.

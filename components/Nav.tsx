@@ -12,7 +12,7 @@ export function Nav() {
 
     const onScroll = () => {
       if (window.scrollY > 60) {
-        nav.style.background = 'rgba(10,10,10,0.8)'
+        nav.style.background = 'rgba(248,244,239,0.88)'
         nav.style.backdropFilter = 'blur(12px)'
       } else {
         nav.style.background = 'transparent'
@@ -71,7 +71,7 @@ export function Nav() {
           const el = e.currentTarget as HTMLElement
           el.style.background = 'var(--accent)'
           el.style.borderColor = 'var(--accent)'
-          el.style.color = 'var(--text-primary)'
+          el.style.color = '#F8F4EF'  // cream on red
         }}
         onMouseLeave={e => {
           const el = e.currentTarget as HTMLElement

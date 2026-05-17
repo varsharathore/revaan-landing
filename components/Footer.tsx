@@ -32,7 +32,7 @@ export function Footer() {
           </p>
           <p
             className="font-display"
-            style={{ fontSize: 'clamp(11px, 1.5vw, 18px)', color: 'var(--text-primary)', letterSpacing: '0.1em' }}
+            style={{ fontSize: 'clamp(11px, 1.5vw, 18px)', color: '#F5F0E8', letterSpacing: '0.1em' }}
           >
             TIMELESS. FEARLESS. AUTHENTIC.
           </p>
@@ -53,7 +53,7 @@ export function Footer() {
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                     rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="hover-underline font-body text-xs tracking-[0.15em] uppercase"
-                    style={{ color: 'var(--text-muted)', cursor: 'none' }}
+                    style={{ color: '#8A8480', cursor: 'none' }}
                   >
                     {link.label}
                   </a>
@@ -75,7 +75,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover-underline font-body text-xs tracking-[0.15em] uppercase"
-                    style={{ color: 'var(--text-muted)', cursor: 'none' }}
+                    style={{ color: '#8A8480', cursor: 'none' }}
                   >
                     {link.label}
                   </a>
@@ -94,7 +94,7 @@ export function Footer() {
                 <a
                   href="mailto:contact.revaan@gmail.com"
                   className="hover-underline font-body text-xs"
-                  style={{ color: 'var(--text-muted)', cursor: 'none' }}
+                  style={{ color: '#8A8480', cursor: 'none' }}
                 >
                   contact.revaan@gmail.com
                 </a>
@@ -103,13 +103,13 @@ export function Footer() {
                 <a
                   href="tel:+917303869977"
                   className="hover-underline font-body text-xs"
-                  style={{ color: 'var(--text-muted)', cursor: 'none' }}
+                  style={{ color: '#8A8480', cursor: 'none' }}
                 >
                   +91 73038 69977
                 </a>
               </li>
               <li>
-                <p className="font-body text-xs" style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                <p className="font-body text-xs" style={{ color: '#8A8480', lineHeight: 1.6 }}>
                   Mon–Fri 9am–6pm<br />Sat 10am–4pm IST
                 </p>
               </li>

@@ -96,7 +96,7 @@ export function LetterformsSection() {
         <motion.span
           key={label}
           className="absolute font-body tracking-[0.3em] uppercase select-none"
-          style={{ ...pos, color: 'rgba(255,255,255,0.18)', fontSize: 9, zIndex: 5 }}
+          style={{ ...pos, color: 'rgba(20,18,16,0.2)', fontSize: 9, zIndex: 5 }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.5 }}
@@ -152,7 +152,7 @@ export function LetterformsSection() {
           style={{
             fontFamily: BEBAS,
             fontSize: 'clamp(100px, 22vw, 9999px)',
-            WebkitTextStroke: '1.5px rgba(245,240,232,0.4)',
+            WebkitTextStroke: '1.5px rgba(20,18,16,0.35)',
             color: 'transparent',
             letterSpacing: '0.05em',
             lineHeight: 0.8,

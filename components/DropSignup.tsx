@@ -29,7 +29,7 @@ export function DropSignup() {
         style={{
           fontFamily: BEBAS,
           fontSize: 'clamp(140px, 28vw, 420px)',
-          color: 'rgba(255,255,255,0.02)',
+          color: 'rgba(20,18,16,0.04)',
           lineHeight: 1,
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',

@@ -35,7 +35,7 @@ function AccordionItem({ title, content, index }: { title: string; content: stri
 
   return (
     <div
-      style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}
+      style={{ borderBottom: '1px solid rgba(20,18,16,0.1)' }}
     >
       <button
         className="w-full flex items-center justify-between py-5 text-left"
@@ -182,7 +182,7 @@ export function MaterialsAccordion() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.35 }}
-          style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+          style={{ borderTop: '1px solid rgba(20,18,16,0.1)' }}
         >
           {items.map((item, i) => (
             <AccordionItem key={i} {...item} index={i} />
