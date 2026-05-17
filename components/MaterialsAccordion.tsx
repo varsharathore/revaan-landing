@@ -10,7 +10,7 @@ const items = [
   {
     title: 'THE FABRIC',
     content:
-      '280 GSM combed cotton. Ring-spun for superior softness. Pre-shrunk so the fit stays true wash after wash. Dense enough to drape, light enough to breathe.',
+      '240 GSM French Terry Cotton. Ring-spun for superior softness. Pre-shrunk so the fit stays true wash after wash. Dense enough to drape, light enough to breathe.',
   },
   {
     title: 'THE FIT',
@@ -23,14 +23,9 @@ const items = [
       'Cold wash inside out. No tumble dry. Hang dry in shade. No bleach. Treat it right and it lasts years, not seasons.',
   },
   {
-    title: 'SHIPPING & RETURNS',
+    title: 'SHIPPING, RETURNS & ORDERS',
     content:
-      'We offer exchanges and returns within 7 days of delivery. Items must be unworn, unwashed, and in original condition with tags intact. Refunds are issued as store credit (gift card) valid for 6 months — shipping charges are non-refundable. Reverse pickup is arranged; if unavailable at your pincode, self-ship to our warehouse. Manufacturing defects (colour bleeding, stitching) are covered within 30 days. For help: contact.revaan@gmail.com · +91 73038 69977 · Mon–Sat 11am–7pm.',
-  },
-  {
-    title: 'ORDER & CANCELLATION',
-    content:
-      'COD orders can be cancelled before dispatch — write to us immediately. Prepaid orders cannot be cancelled once placed. For size exchanges, if your size is unavailable, we will swap it for another product of equal value.',
+      'Exchanges and returns within 7 days — unworn, unwashed, tags intact. Refunds as store credit (6-month gift card); shipping non-refundable. Defects covered 30 days. COD: cancel before dispatch. Prepaid: no cancellation. Size unavailable? We swap for equal value. Help: contact.revaan@gmail.com · +91 73038 69977 · Mon–Sat 11am–7pm.',
   },
 ]
 
@@ -45,16 +40,22 @@ function AccordionItem({ title, content }: { title: string; content: string; ind
         aria-expanded={open}
       >
         <span
-          className="font-body tracking-[0.12em] uppercase"
-          style={{ color: 'var(--text-primary)', fontSize: 'clamp(14px, 1.3vw, 18px)', fontWeight: 500 }}
+          style={{
+            fontFamily: '"Bebas Neue", "Anton", Impact, sans-serif',
+            fontSize: 'clamp(16px, 1.5vw, 22px)',
+            letterSpacing: '0.08em',
+            color: 'var(--text-primary)',
+          }}
         >
           {title}
         </span>
         <span
-          className="font-body transition-transform duration-300 flex-shrink-0 ml-4"
+          className="transition-transform duration-300 flex-shrink-0 ml-4"
           style={{
-            color: 'var(--text-muted)',
-            fontSize: 22,
+            color: 'var(--accent)',
+            fontSize: 24,
+            fontWeight: 300,
+            lineHeight: 1,
             transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
           }}
         >
@@ -115,7 +116,7 @@ export function MaterialsAccordion() {
             >
               <Image
                 src="/images/insta-unapologetic-texture.jpg"
-                alt="280 GSM premium cotton — BE UNAPOLOGETIC"
+                alt="240 GSM premium cotton — BE UNAPOLOGETIC"
                 fill
                 className="object-cover object-center"
                 sizes="22vw"
@@ -159,7 +160,7 @@ export function MaterialsAccordion() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          {/* Yellowtail "Craft" overlaps the 280 GSM heading — editorial typographic moment */}
+          {/* Yellowtail "Craft" overlaps the 240 GSM heading — editorial typographic moment */}
           <div className="relative" style={{ marginBottom: '0.5rem' }}>
             <motion.span
               className="pointer-events-none select-none"
@@ -191,7 +192,7 @@ export function MaterialsAccordion() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                280 GSM PREMIUM
+                240 GSM PREMIUM
               </h2>
             </div>
           </div>
@@ -202,7 +203,7 @@ export function MaterialsAccordion() {
           >
             Not every tee is made equal. Most streetwear brands chase margin — thinner
             fabric, looser stitching, colours that fade after five washes. We went the
-            other way. 280 GSM combed cotton, pre-shrunk, pigment-dyed in small batches.
+            other way. 240 GSM French Terry Cotton, pre-shrunk, pigment-dyed in small batches.
           </p>
 
           {/* Accordion */}

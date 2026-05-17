@@ -34,7 +34,7 @@ const scenes = [
     script: 'The Drop',
     showScript: true,
     headline: ['REBEL WITH', 'REVAAN'],
-    body: '280 GSM · Superior fall. The weight you feel. The statement you make.',
+    body: '240 GSM French Terry Cotton · Superior fall. The weight you feel. The statement you make.',
     cta: 'Shop Now',
     leftImage: '/images/png-iphone/wavy-duo.png',
     leftAlt: 'Wavy Core tee — duo',
@@ -46,7 +46,7 @@ const scenes = [
     textBody: '#6A6460',
     scriptColor: '#C8371A',
     tag: '₹2,199',
-    tagLabel: '280 GSM · SUPERIOR FALL',
+    tagLabel: '240 GSM FRENCH TERRY · SUPERIOR FALL',
   },
   {
     num: '03',
@@ -153,7 +153,7 @@ export function ScrollSequence() {
                 color: 'rgba(20,18,16,0.06)', lineHeight: 1,
               }}>{scene.num}</span>
               <p className="absolute bottom-9 left-12 font-body tracking-[0.25em] uppercase"
-                style={{ color: 'rgba(20,18,16,0.35)', fontSize: 10 }}>SS25 · Revaan</p>
+                style={{ color: 'rgba(20,18,16,0.35)', fontSize: 10 }}>SS26 · Revaan</p>
             </div>
 
             {/* No separator — left and right share the same bg color */}

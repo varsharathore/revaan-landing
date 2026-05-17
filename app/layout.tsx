@@ -35,10 +35,10 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'Revaan — Indian Streetwear',
-  description: 'Oversized tees. 280 GSM. Built to rebel.',
+  description: 'Oversized tees. 240 GSM. Built to rebel.',
   openGraph: {
     title: 'Revaan — Indian Streetwear',
-    description: 'Oversized tees. 280 GSM. Built to rebel.',
+    description: 'Oversized tees. 240 GSM. Built to rebel.',
     siteName: 'Revaan',
   },
 }

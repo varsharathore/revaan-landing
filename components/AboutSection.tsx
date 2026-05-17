@@ -97,7 +97,7 @@ export function AboutSection() {
               Revaan was born from a simple frustration — great streetwear in India
               either felt too basic or too overpriced.
               <br /><br />
-              So we built tees with weight, fall, and attitude. 280 GSM premium cotton.
+              So we built tees with weight, fall, and attitude. 240 GSM French Terry Cotton.
               Limited drops. Made for people who don&apos;t dress to disappear.
             </p>
           </motion.div>

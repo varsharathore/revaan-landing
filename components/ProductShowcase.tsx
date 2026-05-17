@@ -58,7 +58,7 @@ export function ProductShowcase() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            SS25 COLLECTION
+            SS26 COLLECTION
           </motion.h2>
         </div>
         <a
@@ -131,7 +131,7 @@ export function ProductShowcase() {
                 {p.name}
               </p>
               <p className="font-body tracking-[0.12em] uppercase mt-0.5" style={{ color: 'var(--text-muted)', fontSize: 9 }}>
-                280 GSM Oversized Fit
+                240 GSM French Terry
               </p>
               <span className="font-body text-xs tracking-[0.12em] uppercase mt-1.5 inline-block"
                 style={{ color: 'var(--accent)' }}>

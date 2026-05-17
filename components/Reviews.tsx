@@ -9,29 +9,14 @@ const reviews = [
     location: 'Brand Philosophy',
   },
   {
-    quote: 'The fabric weight is insane for the price. Wore it three days in a row. Zero guilt.',
-    name: 'ARYAN K.',
-    location: 'Mumbai',
-  },
-  {
-    quote: 'I\'m not here to be liked, I\'m here to be remembered. Loud in my truth, louder in my ambition — because shrinking was never an option.',
+    quote: 'I don\'t whisper my presence — I walk in and own the room.',
     name: 'REVAAN',
     location: 'Brand Philosophy',
   },
   {
-    quote: 'Finally a brand that gets oversized right. Not just big — actually structured.',
-    name: 'PRIYA S.',
-    location: 'Delhi',
-  },
-  {
-    quote: 'Being Me is — I don\'t whisper my presence. I walk in and own the room.',
+    quote: 'Don\'t dress to disappear.',
     name: 'REVAAN',
     location: 'Brand Philosophy',
-  },
-  {
-    quote: 'Ordered on a Tuesday. Wore it on Thursday. Been wearing it every week since.',
-    name: 'RAHUL M.',
-    location: 'Bangalore',
   },
 ]
 
