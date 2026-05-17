@@ -83,7 +83,7 @@ export function StatementSection() {
         <div
           ref={imgRef}
           className="absolute top-0 right-0"
-          style={{ width: 'clamp(120px, 18vw, 260px)', zIndex: 10 }}
+          style={{ width: 'clamp(220px, 30vw, 440px)', zIndex: 10 }}
         >
           <div className="relative" style={{ aspectRatio: '3/4' }}>
             {/* Glow behind image */}

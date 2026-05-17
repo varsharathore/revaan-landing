@@ -160,20 +160,15 @@ export function ScrollSequence() {
               className="flex flex-col relative"
               style={{ width: '35%', background: scene.panelBg }}
             >
-              {/* Product — container bg already matches photo bg, no overlay needed */}
-              <div
-                className="flex-1 flex items-center justify-center relative"
-                style={{ minHeight: 0, padding: '44px 16px 16px' }}
-              >
-                <div className="relative" style={{ width: 260, height: 420, flexShrink: 0 }}>
-                  <Image
-                    src={scene.productImage}
-                    alt={scene.productAlt}
-                    fill
-                    className="object-contain object-bottom img-blend"
-                    sizes="260px"
-                  />
-                </div>
+              {/* Product — fills flex-1 so model is as tall as the panel allows */}
+              <div className="flex-1 relative overflow-hidden" style={{ minHeight: 0 }}>
+                <Image
+                  src={scene.productImage}
+                  alt={scene.productAlt}
+                  fill
+                  className="object-contain object-bottom img-blend"
+                  sizes="35vw"
+                />
               </div>
 
               {/* Content — text colors adapted to light panel bg */}

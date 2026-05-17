@@ -58,7 +58,7 @@ export function LetterformsSection() {
         target="_blank"
         rel="noopener noreferrer"
         className="absolute"
-        style={{ left: '24%', top: '26%', width: 'clamp(140px, 16vw, 230px)', zIndex: 10, cursor: 'none' }}
+        style={{ left: '22%', top: '20%', width: 'clamp(200px, 24vw, 340px)', zIndex: 10, cursor: 'none' }}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, delay: 0.2 }}
@@ -96,7 +96,7 @@ export function LetterformsSection() {
         target="_blank"
         rel="noopener noreferrer"
         className="absolute"
-        style={{ left: '54%', top: '36%', width: 'clamp(120px, 13vw, 190px)', zIndex: 10, cursor: 'none' }}
+        style={{ left: '52%', top: '30%', width: 'clamp(170px, 20vw, 290px)', zIndex: 10, cursor: 'none' }}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, delay: 0.35 }}
