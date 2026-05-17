@@ -12,9 +12,10 @@ const SCRIPT = '"Cormorant", Georgia, serif'
  * Philosophy §9: price pills feel like "physical objects placed on top of the page."
  */
 const cards = [
-  { image: '/images/rebel-1.png',     alt: 'Rebel With Revaan', price: '₹2,199', name: 'Rebel With Revaan', bg: '#F2EDE4', w: 220, h: 290, style: { top: '8%', left: '8%' },                  rotate: -2,  delay: 0,    parallaxY: [-20, 60] },
-  { image: '/images/citybeats-1.jpg', alt: 'City Beats',        price: '₹1,999', name: 'City Beats',        bg: '#1A1A1A', w: 200, h: 260, style: { top: '4%',  left: 'calc(50% - 100px)' }, rotate: 1,   delay: 0.12, parallaxY: [-40, 30] },
-  { image: '/images/liar-1.jpg',      alt: 'F*cking Liar',      price: '₹2,199', name: 'F*cking Liar',      bg: '#1E1B19', w: 200, h: 260, style: { top: '10%', right: '8%' },                 rotate: 3,   delay: 0.22, parallaxY: [-60, 10] },
+  // bg = exact pixel sample of each photo's background — no mismatched edges
+  { image: '/images/rebel-1.png',     alt: 'Rebel With Revaan', price: '₹2,199', name: 'Rebel With Revaan', bg: '#F5F0E5', w: 220, h: 290, style: { top: '8%', left: '8%' },                  rotate: -2,  delay: 0,    parallaxY: [-20, 60] },
+  { image: '/images/citybeats-1.jpg', alt: 'City Beats',        price: '₹1,999', name: 'City Beats',        bg: '#2C4A54', w: 200, h: 260, style: { top: '4%',  left: 'calc(50% - 100px)' }, rotate: 1,   delay: 0.12, parallaxY: [-40, 30] },
+  { image: '/images/liar-1.jpg',      alt: 'F*cking Liar',      price: '₹2,199', name: 'F*cking Liar',      bg: '#EFECEA', w: 200, h: 260, style: { top: '10%', right: '8%' },                 rotate: 3,   delay: 0.22, parallaxY: [-60, 10] },
 ]
 
 export function LetterformsSection() {
@@ -56,7 +57,7 @@ export function LetterformsSection() {
           whileHover={{ scale: 1.04, rotate: 0, transition: { duration: 0.3 } }}
         >
           <div style={{ transform: `rotate(${card.rotate}deg)` }}>
-            {/* Image — edge-dissolve vignette makes the card "float" without a visible box */}
+            {/* Image — bg matches photo bg exactly, so image edge is invisible */}
             <div className="relative overflow-hidden" style={{ width: card.w, height: card.h, background: card.bg }}>
               <Image
                 src={card.image}
@@ -64,19 +65,7 @@ export function LetterformsSection() {
                 fill
                 className="object-cover object-top"
                 sizes={`${card.w}px`}
-                style={{ filter: 'brightness(1.05)' }}
-              />
-              {/*
-               * Radial vignette overlay: transparent at center (product visible),
-               * fades to page bg (#0A0A0A) at edges. Dissolves the rectangular box
-               * boundary into the dark canvas — product appears to float.
-               */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(ellipse 85% 80% at 50% 45%, transparent 35%, #0A0A0A 82%)',
-                  zIndex: 2,
-                }}
+                style={{ filter: 'brightness(1.02)' }}
               />
             </div>
 

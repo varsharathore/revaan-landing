@@ -14,13 +14,13 @@ const SCRIPT = '"Cormorant", Georgia, serif'
  * NOT repeat(N, 1fr). That's Shopify.
  */
 const products = [
-  // Hero product — widest card, tallest image
-  { name: 'Rebel With Revaan Tee',      price: '₹2,199', image: '/images/rebel-1.png',     h: 440, mt: 0,   colW: 1.3, fit: 'contain' as const },
-  { name: 'City Beats Oversized Tee',   price: '₹1,999', image: '/images/citybeats-1.jpg', h: 300, mt: 100, colW: 0.85, fit: 'cover' as const },
-  { name: 'Pulpy Oversized Tee',        price: '₹1,999', image: '/images/pulpy-2.jpg',     h: 480, mt: 0,   colW: 1.1, fit: 'cover' as const },
-  { name: 'Wavy Core Oversized Tee',    price: '₹2,099', image: '/images/wavy-1.jpg',      h: 360, mt: 60,  colW: 0.95, fit: 'cover' as const },
-  { name: 'F*cking Liar Oversized Tee', price: '₹2,199', image: '/images/liar-1.jpg',      h: 400, mt: 20,  colW: 1.05, fit: 'cover' as const },
-  { name: 'Rebel With Revaan — Alt',    price: '₹2,199', image: '/images/rebel-2.png',     h: 320, mt: 80,  colW: 0.9,  fit: 'contain' as const },
+  // bg = exact match of each photo's background color
+  { name: 'Rebel With Revaan Tee',      price: '₹2,199', image: '/images/rebel-1.png',     h: 440, mt: 0,   colW: 1.3,  fit: 'contain' as const, bg: '#F5F0E5' },
+  { name: 'City Beats Oversized Tee',   price: '₹1,999', image: '/images/citybeats-1.jpg', h: 300, mt: 100, colW: 0.85, fit: 'cover'   as const, bg: '#2C4A54' },
+  { name: 'Pulpy Oversized Tee',        price: '₹1,999', image: '/images/pulpy-2.jpg',     h: 480, mt: 0,   colW: 1.1,  fit: 'cover'   as const, bg: '#F3F1EE' },
+  { name: 'Wavy Core Oversized Tee',    price: '₹2,099', image: '/images/wavy-1.jpg',      h: 360, mt: 60,  colW: 0.95, fit: 'cover'   as const, bg: '#F0EEEC' },
+  { name: 'F*cking Liar Oversized Tee', price: '₹2,199', image: '/images/liar-1.jpg',      h: 400, mt: 20,  colW: 1.05, fit: 'cover'   as const, bg: '#EFECEA' },
+  { name: 'Rebel With Revaan — Alt',    price: '₹2,199', image: '/images/rebel-2.png',     h: 320, mt: 80,  colW: 0.9,  fit: 'contain' as const, bg: '#B8B5B0' },
 ]
 
 export function ProductShowcase() {
@@ -112,7 +112,7 @@ export function ProductShowcase() {
               {/* Image — vignette dissolves edges into page bg. No visible box. */}
               <div
                 className="relative overflow-hidden mb-3 transition-opacity duration-300 group-hover:opacity-90"
-                style={{ height: p.h, background: '#0A0A0A' }}
+                style={{ height: p.h, background: p.bg }}
               >
                 <Image
                   src={p.image}
@@ -121,17 +121,6 @@ export function ProductShowcase() {
                   className={`object-${p.fit} object-top transition-transform duration-700 group-hover:scale-[1.04]`}
                   sizes="220px"
                   style={{ filter: 'brightness(1.08) contrast(1.02)' }}
-                />
-                {/* Edge vignette — fades image edges into #0A0A0A. Strongest at bottom. */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: `
-                      linear-gradient(to bottom, transparent 50%, #0A0A0A 100%),
-                      linear-gradient(to right, #0A0A0A, transparent 12%, transparent 88%, #0A0A0A)
-                    `,
-                    zIndex: 2,
-                  }}
                 />
               </div>
 
