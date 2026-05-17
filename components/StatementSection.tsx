@@ -12,8 +12,8 @@ export function StatementSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 px-8 md:px-16 overflow-hidden"
-      style={{ background: 'var(--bg)' }}
+      className="relative overflow-hidden"
+      style={{ padding: '160px 64px', background: 'var(--bg)' }}
     >
       <div className="relative">
         {/* Line 1 */}

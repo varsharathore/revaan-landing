@@ -28,8 +28,8 @@ export function Reviews() {
   return (
     <section
       ref={ref}
-      className="py-24 px-8 md:px-16 flex flex-col items-center text-center"
-      style={{ background: 'var(--bg-panel)' }}
+      className="px-8 md:px-16 flex flex-col items-center text-center"
+      style={{ background: 'var(--bg-panel)', padding: '160px 64px' }}
     >
       <AnimatePresence mode="wait">
         <motion.div

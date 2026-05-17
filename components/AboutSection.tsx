@@ -13,8 +13,8 @@ export function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative py-20 px-8 md:px-16"
-      style={{ background: 'var(--bg)' }}
+      className="relative px-8 md:px-16"
+      style={{ background: 'var(--bg)', padding: '160px 64px' }}
     >
       {/* Mosaic container — script overlaps its top edge */}
       <div className="relative mt-16">

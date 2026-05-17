@@ -90,8 +90,8 @@ export function MaterialsAccordion() {
     <section
       id="craft"
       ref={ref}
-      className="py-24 px-8 md:px-16"
-      style={{ background: 'var(--bg)' }}
+      className="px-8 md:px-16"
+      style={{ background: 'var(--bg)', padding: '160px 64px', marginTop: '160px' }}
     >
       {/* Heading */}
       <div className="mb-16 relative">

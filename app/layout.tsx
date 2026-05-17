@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, Dancing_Script, DM_Sans } from 'next/font/google'
+import { Bebas_Neue, Anton, Dancing_Script, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LenisProvider } from '@/components/LenisProvider'
 import { CustomCursor } from '@/components/CustomCursor'
@@ -8,6 +8,13 @@ import { Preloader } from '@/components/Preloader'
 const bebasNeue = Bebas_Neue({
   weight: '400',
   variable: '--font-bebas',
+  subsets: ['latin'],
+  display: 'block',  // block prevents FOUT flash with wrong weight
+})
+
+const anton = Anton({
+  weight: '400',
+  variable: '--font-anton',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -44,8 +51,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dancingScript.variable} ${dmSans.variable}`}
+      className={`${bebasNeue.variable} ${anton.variable} ${dancingScript.variable} ${dmSans.variable}`}
     >
+      <head>
+        {/* Preload scene images so no blank frames during scroll sequence */}
+        <link rel="preload" as="image" href="/images/citybeats-1.jpg" />
+        <link rel="preload" as="image" href="/images/pulpy-1.jpg" />
+        <link rel="preload" as="image" href="/images/wavy-1.jpg" />
+        <link rel="preload" as="image" href="/images/rebel-1.png" />
+        <link rel="preload" as="image" href="/images/rebel-2.png" />
+        <link rel="preload" as="image" href="/images/liar-1.jpg" />
+      </head>
       <body>
         <LenisProvider>
           <Preloader />
