@@ -93,10 +93,10 @@ export function MaterialsAccordion() {
       className="px-8 md:px-16"
       style={{ background: 'var(--bg)', padding: '160px 64px', marginTop: '160px' }}
     >
-      {/* Heading — Bebas only. Script removed from this section per brand rule. */}
-      <div className="mb-16">
+      {/* Heading — 11vw so it clips the right edge. Overlaps into the grid below via negative margin-bottom. */}
+      <div style={{ marginBottom: '-1.5rem', overflow: 'hidden' }}>
         <motion.p
-          className="font-body tracking-[0.3em] uppercase mb-3"
+          className="font-body tracking-[0.3em] uppercase mb-2"
           style={{ color: 'var(--accent)', fontSize: 11 }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -107,9 +107,11 @@ export function MaterialsAccordion() {
         <motion.h2
           style={{
             fontFamily: '"Bebas Neue", "Anton", Impact, sans-serif',
-            fontSize: 'clamp(48px, 7vw, 100px)',
+            // 11vw: clips right edge of section intentionally (philosophy §4)
+            fontSize: 'clamp(60px, 11vw, 9999px)',
             color: 'var(--text-primary)',
-            lineHeight: 0.95,
+            lineHeight: 0.9,
+            whiteSpace: 'nowrap',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

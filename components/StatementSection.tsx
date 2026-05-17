@@ -1,22 +1,55 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'motion/react'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 
 const BEBAS = '"Bebas Neue", "Anton", Impact, sans-serif'
 
 export function StatementSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
+  const ref       = useRef<HTMLDivElement>(null)
+  const line1Ref  = useRef<HTMLHeadingElement>(null)
+  const line2Ref  = useRef<HTMLHeadingElement>(null)
+  const imgRef    = useRef<HTMLDivElement>(null)
+  const bodyRef   = useRef<HTMLDivElement>(null)
+  const inView    = useInView(ref, { once: true, margin: '-10%' })
+
+  useEffect(() => {
+    const section = ref.current
+    if (!section) return
+
+    const config = {
+      trigger: section,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.2,
+    }
+
+    // "DESIGNED" — moves up fastest (1.3× scroll speed = editorial depth foreground)
+    gsap.to(line1Ref.current, { y: -120, ease: 'none', scrollTrigger: config })
+
+    // "TO REBEL" — moves slightly slower (mid-layer)
+    gsap.to(line2Ref.current, { y: -70, ease: 'none', scrollTrigger: config })
+
+    // Product image — slowest (background layer, floats behind text speed)
+    gsap.to(imgRef.current, { y: -30, ease: 'none', scrollTrigger: config })
+
+    // Body copy — neutral speed
+    gsap.to(bodyRef.current, { y: -50, ease: 'none', scrollTrigger: config })
+
+    return () => ScrollTrigger.getAll().forEach(t => t.kill())
+  }, [])
 
   return (
     <section
       ref={ref}
       className="relative overflow-hidden"
-      style={{ padding: '160px 64px', background: 'var(--bg)' }}
+      style={{ padding: '180px 64px', background: 'var(--bg)' }}
     >
       <div className="relative">
+        {/* Layer 3 (display text) — moves 1.3× */}
         <motion.h2
+          ref={line1Ref}
           style={{
             fontFamily: BEBAS,
             fontSize: 'clamp(80px, 18vw, 9999px)',
@@ -32,7 +65,9 @@ export function StatementSection() {
           DESIGNED
         </motion.h2>
 
+        {/* Layer 3b — moves 1.1× */}
         <motion.h2
+          ref={line2Ref}
           style={{
             fontFamily: BEBAS,
             fontSize: 'clamp(80px, 18vw, 9999px)',
@@ -48,41 +83,36 @@ export function StatementSection() {
           TO REBEL
         </motion.h2>
 
-        {/* Product image — top right with radial glow */}
-        <motion.div
+        {/* Layer 2 (product image) — sits over the display text, moves 0.7× */}
+        <div
+          ref={imgRef}
           className="absolute top-0 right-0"
           style={{ width: 'clamp(120px, 18vw, 260px)', zIndex: 10 }}
-          initial={{ opacity: 0, y: -24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.3 }}
         >
           <div className="relative" style={{ aspectRatio: '3/4' }}>
+            {/* Glow behind image */}
             <div className="absolute pointer-events-none" style={{
               inset: '-30px',
-              background: 'radial-gradient(ellipse at 50% 60%, rgba(200,55,26,0.3) 0%, transparent 65%)',
+              background: 'radial-gradient(ellipse at 50% 60%, rgba(200,55,26,0.28) 0%, transparent 65%)',
               filter: 'blur(20px)',
             }} />
             <Image
               src="/images/liar-2.jpg"
               alt="Revaan oversized tee"
-              fill className="object-cover relative z-10"
+              fill
+              className="object-cover relative z-10"
               sizes="260px"
               style={{ mixBlendMode: 'multiply' }}
             />
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Updated body copy — longer, more brand voice */}
-      <motion.div
-        className="mt-10 max-w-lg"
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.5 }}
-      >
+      {/* Body copy — Layer 1 (base), moves at neutral speed */}
+      <div ref={bodyRef} className="mt-10 max-w-lg">
         <p
           className="font-body leading-relaxed"
-          style={{ color: 'var(--text-primary)', fontSize: 'clamp(15px, 1.3vw, 20px)', opacity: 0.8 }}
+          style={{ color: 'var(--text-primary)', fontSize: 'clamp(15px, 1.3vw, 20px)', opacity: 0.75 }}
         >
           Indian streets don&apos;t follow the script. Neither do we.
           <br /><br />
@@ -90,7 +120,7 @@ export function StatementSection() {
           Heavyweight cotton, oversized silhouettes, loud details, and small drops
           that were never made for everyone.
         </p>
-      </motion.div>
+      </div>
     </section>
   )
 }
