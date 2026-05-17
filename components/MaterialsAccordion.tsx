@@ -39,17 +39,24 @@ function AccordionItem({ title, content }: { title: string; content: string; ind
   return (
     <div style={{ borderBottom: '1px solid rgba(20,18,16,0.1)' }}>
       <button
-        className="w-full flex items-center justify-between py-5 text-left"
+        className="w-full flex items-center justify-between py-6 text-left"
         style={{ cursor: 'none' }}
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
-        <span className="font-body text-sm tracking-[0.15em] uppercase" style={{ color: 'var(--text-primary)' }}>
+        <span
+          className="font-body tracking-[0.12em] uppercase"
+          style={{ color: 'var(--text-primary)', fontSize: 'clamp(14px, 1.3vw, 18px)', fontWeight: 500 }}
+        >
           {title}
         </span>
         <span
-          className="font-body text-lg transition-transform duration-300"
-          style={{ color: 'var(--text-muted)', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}
+          className="font-body transition-transform duration-300 flex-shrink-0 ml-4"
+          style={{
+            color: 'var(--text-muted)',
+            fontSize: 22,
+            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+          }}
         >
           +
         </span>
@@ -63,7 +70,10 @@ function AccordionItem({ title, content }: { title: string; content: string; ind
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: 'hidden' }}
           >
-            <p className="font-body text-sm leading-relaxed pb-5" style={{ color: 'var(--text-muted)', maxWidth: 400 }}>
+            <p
+              className="font-body leading-relaxed pb-6"
+              style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 1.1vw, 16px)', maxWidth: 420 }}
+            >
               {content}
             </p>
           </motion.div>
@@ -139,6 +149,28 @@ export function MaterialsAccordion() {
           >
             VIEW ALL ↗
           </motion.a>
+
+          {/* "Craft" script — inside left column so top is fixed px, never shifts when accordion opens */}
+          <motion.div
+            className="absolute pointer-events-none select-none"
+            style={{ top: 250, left: 40, zIndex: 10, whiteSpace: 'nowrap' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span
+              style={{
+                fontFamily: SCRIPT,
+                fontWeight: 400,
+                fontSize: 'clamp(70px, 10vw, 140px)',
+                color: 'var(--accent)',
+                lineHeight: 1,
+                opacity: 0.92,
+              }}
+            >
+              Craft
+            </span>
+          </motion.div>
         </motion.div>
 
         {/* RIGHT — section title + body + accordion */}
@@ -188,27 +220,6 @@ export function MaterialsAccordion() {
         </motion.div>
       </div>
 
-      {/* "Craft" Yellowtail script — floats across the left/right boundary */}
-      <motion.div
-        className="absolute pointer-events-none select-none"
-        style={{ top: '42%', left: '18%', zIndex: 10 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <span
-          style={{
-            fontFamily: SCRIPT,
-            fontWeight: 400,
-            fontSize: 'clamp(70px, 10vw, 140px)',
-            color: 'var(--accent)',
-            lineHeight: 1,
-            opacity: 0.92,
-          }}
-        >
-          Craft
-        </span>
-      </motion.div>
     </section>
   )
 }
