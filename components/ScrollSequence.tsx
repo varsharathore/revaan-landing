@@ -17,10 +17,11 @@ const scenes = [
     headline: ['BE', 'UNAPOLOGETIC'],
     body: 'Designed for the streets. Worn by those who don\'t ask for permission.',
     cta: 'View Collection',
-    leftImage: '/images/png-iphone/liar-man-solo.png',
-    leftAlt: 'F*cking Liar tee — solo',
-    productImage: '/images/png-iphone/rebel-woman-solo.png',
-    productAlt: 'Rebel With Revaan tee',
+    leftImage: '/images/insta-rebel-warehouse.jpg',
+    leftAlt: 'Rebel With Revaan tee — warehouse editorial',
+    leftFit: 'cover' as const,
+    productImage: '/images/insta-pulpy-woman-transparent.jpg',
+    productAlt: 'Pulpy Revaan tee — model',
     panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
@@ -37,6 +38,7 @@ const scenes = [
     cta: 'Shop Now',
     leftImage: '/images/png-iphone/wavy-duo.png',
     leftAlt: 'Wavy Core tee — duo',
+    leftFit: 'contain' as const,
     productImage: '/images/png-iphone/liar-group.png',
     productAlt: 'F*cking Liar tee — group',
     panelBg: PANEL,
@@ -55,6 +57,7 @@ const scenes = [
     cta: 'Our Story',
     leftImage: '/images/png-iphone/liar-group.png',
     leftAlt: 'F*cking Liar tee — group',
+    leftFit: 'contain' as const,
     productImage: '/images/png-iphone/rebel-back.png',
     productAlt: 'BE UNAPOLOGETIC — back',
     panelBg: PANEL,
@@ -131,7 +134,7 @@ export function ScrollSequence() {
                 src={scene.leftImage}
                 alt={scene.leftAlt}
                 fill
-                className="object-contain object-bottom img-blend"
+                className={`object-${scene.leftFit} ${scene.leftFit === 'contain' ? 'object-bottom img-blend' : 'object-center'}`}
                 sizes="65vw"
                 priority={i === 0}
               />

@@ -4,14 +4,29 @@ import { motion, useInView, AnimatePresence } from 'motion/react'
 
 const reviews = [
   {
+    quote: 'Confidence isn\'t quiet. It\'s bold, disruptive, and impossible to ignore.',
+    name: 'REVAAN',
+    location: 'Brand Philosophy',
+  },
+  {
     quote: 'The fabric weight is insane for the price. Wore it three days in a row. Zero guilt.',
     name: 'ARYAN K.',
     location: 'Mumbai',
   },
   {
+    quote: 'I\'m not here to be liked, I\'m here to be remembered. Loud in my truth, louder in my ambition — because shrinking was never an option.',
+    name: 'REVAAN',
+    location: 'Brand Philosophy',
+  },
+  {
     quote: 'Finally a brand that gets oversized right. Not just big — actually structured.',
     name: 'PRIYA S.',
     location: 'Delhi',
+  },
+  {
+    quote: 'Being Me is — I don\'t whisper my presence. I walk in and own the room.',
+    name: 'REVAAN',
+    location: 'Brand Philosophy',
   },
   {
     quote: 'Ordered on a Tuesday. Wore it on Thursday. Been wearing it every week since.',

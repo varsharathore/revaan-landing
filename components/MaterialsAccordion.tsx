@@ -114,10 +114,10 @@ export function MaterialsAccordion() {
               data-cursor-enlarge
             >
               <Image
-                src="/images/png-iphone/rebel-woman-solo.png"
-                alt="280 GSM premium cotton"
+                src="/images/insta-unapologetic-texture.jpg"
+                alt="280 GSM premium cotton — BE UNAPOLOGETIC"
                 fill
-                className="object-contain object-bottom img-blend"
+                className="object-cover object-center"
                 sizes="22vw"
               />
             </div>
@@ -128,10 +128,10 @@ export function MaterialsAccordion() {
               data-cursor-enlarge
             >
               <Image
-                src="/images/png-iphone/liar-man-solo.png"
-                alt="Revaan oversized fit"
+                src="/images/insta-rebel-print-detail.jpg"
+                alt="Rebel With Revaan — 3D puff print detail"
                 fill
-                className="object-contain object-bottom img-blend"
+                className="object-cover object-center"
                 sizes="16vw"
               />
             </div>
