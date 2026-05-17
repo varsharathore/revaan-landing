@@ -93,7 +93,7 @@ export function StatementSection() {
               filter: 'blur(20px)',
             }} />
             <Image
-              src="/images/rebel-2_transparent.png"
+              src="/images/png-iphone/rebel-back.png"
               alt="Revaan oversized tee — BE UNAPOLOGETIC"
               fill
               className="object-cover relative z-10"

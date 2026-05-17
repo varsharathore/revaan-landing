@@ -69,7 +69,7 @@ export function LetterformsSection() {
           style={{ width: '100%', aspectRatio: '3/4', background: '#F5F2EE' }}
         >
           <Image
-            src="/images/rebel-1_transparent.png"
+            src="/images/png-iphone/rebel-woman-solo.png"
             alt="Rebel With Revaan tee"
             fill
             className="object-contain img-blend"
@@ -107,7 +107,7 @@ export function LetterformsSection() {
           style={{ width: '100%', aspectRatio: '3/4', background: '#EFECEA' }}
         >
           <Image
-            src="/images/liar-2_transparent.png"
+            src="/images/png-iphone/liar-man-solo.png"
             alt="F*cking Liar tee"
             fill
             className="object-contain img-blend"

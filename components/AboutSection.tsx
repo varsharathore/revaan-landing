@@ -68,10 +68,10 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/citybeats-2_transparent.png"
+              src="/images/png-iphone/rebel-woman-solo.png"
               alt="Revaan tee"
               fill
-              className="object-cover object-center"
+              className="object-contain object-bottom img-blend"
               sizes="25vw"
             />
           </motion.div>
@@ -112,7 +112,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/wavy-2_transparent.png"
+              src="/images/png-iphone/wavy-duo.png"
               alt="Revaan tee"
               fill
               className="object-contain object-bottom img-blend"
@@ -130,7 +130,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/liar-1_transparent.png"
+              src="/images/png-iphone/liar-group.png"
               alt="Revaan tee"
               fill
               className="object-contain object-bottom img-blend"

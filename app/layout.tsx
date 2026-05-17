@@ -54,13 +54,12 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${anton.variable} ${yellowtail.variable} ${dmSans.variable}`}
     >
       <head>
-        {/* Preload hero scene images — all 3 left panels + right products */}
-        <link rel="preload" as="image" href="/images/liar-2_transparent.png" />
-        <link rel="preload" as="image" href="/images/wavy-1_transparent.png" />
-        <link rel="preload" as="image" href="/images/pulpy-2_transparent.png" />
-        <link rel="preload" as="image" href="/images/rebel-1_transparent.png" />
-        <link rel="preload" as="image" href="/images/wavy-2_transparent.png" />
-        <link rel="preload" as="image" href="/images/rebel-2_transparent.png" />
+        {/* Preload hero scene images */}
+        <link rel="preload" as="image" href="/images/png-iphone/liar-man-solo.png" />
+        <link rel="preload" as="image" href="/images/png-iphone/rebel-woman-solo.png" />
+        <link rel="preload" as="image" href="/images/png-iphone/wavy-duo.png" />
+        <link rel="preload" as="image" href="/images/png-iphone/liar-group.png" />
+        <link rel="preload" as="image" href="/images/png-iphone/rebel-back.png" />
       </head>
       <body>
         <LenisProvider>
