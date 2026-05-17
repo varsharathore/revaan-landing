@@ -2,6 +2,8 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 
+const BEBAS = '"Bebas Neue", "Anton", Impact, sans-serif'
+
 export function DropSignup() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
@@ -18,24 +20,18 @@ export function DropSignup() {
       id="drop"
       ref={ref}
       className="relative flex flex-col items-center text-center"
-      style={{
-        background: 'var(--bg)',
-        padding: '200px 32px',
-        maxHeight: '60vh',
-        overflow: 'hidden',
-      }}
+      style={{ background: 'var(--bg)', padding: '140px 32px', overflow: 'hidden' }}
     >
-      {/* "DROP" — pure texture, 2% opacity. NOT the headline. */}
+      {/* "DROP" — faint background texture only. 2% opacity. */}
       <span
         aria-hidden
         className="select-none pointer-events-none absolute"
         style={{
-          fontFamily: '"Bebas Neue", "Anton", Impact, sans-serif',
+          fontFamily: BEBAS,
           fontSize: 'clamp(140px, 28vw, 420px)',
           color: 'rgba(255,255,255,0.02)',
           lineHeight: 1,
-          top: '50%',
-          left: '50%',
+          top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
           whiteSpace: 'nowrap',
           zIndex: 0,
@@ -44,7 +40,7 @@ export function DropSignup() {
         DROP
       </span>
 
-      <div className="relative z-10 w-full" style={{ maxWidth: 560 }}>
+      <div className="relative z-10 w-full" style={{ maxWidth: 520 }}>
         {/* Tag */}
         <motion.span
           className="inline-block font-body text-xs tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-6"
@@ -56,18 +52,14 @@ export function DropSignup() {
           NEVER MISS A DROP
         </motion.span>
 
-        {/*
-          Utility headline — small, DM Sans 400, NOT condensed display.
-          Email signup is a utility action, not a brand moment.
-        */}
+        {/* Headline — utility scale, not brand-moment scale */}
         <motion.h2
-          className="font-body mb-8"
+          className="font-body mb-4"
           style={{
-            fontSize: 'clamp(20px, 4vw, 52px)',
+            fontSize: 'clamp(22px, 4vw, 52px)',
             fontWeight: 400,
             color: 'var(--text-primary)',
             lineHeight: 1.1,
-            letterSpacing: '-0.01em',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -76,14 +68,27 @@ export function DropSignup() {
           Get first access
         </motion.h2>
 
+        {/* Supporting copy */}
+        <motion.p
+          className="font-body text-sm leading-relaxed mb-8"
+          style={{ color: 'var(--text-muted)', maxWidth: 360, margin: '0 auto 2rem' }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.14 }}
+        >
+          Limited pieces. No endless restocks.
+          <br />
+          Get early access before the next drop goes public.
+        </motion.p>
+
         {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
           className="flex"
-          style={{ maxWidth: 440, margin: '0 auto' }}
+          style={{ maxWidth: 420, margin: '0 auto' }}
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.16 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           {submitted ? (
             <p className="font-body text-sm w-full py-4" style={{ color: 'var(--accent)' }}>

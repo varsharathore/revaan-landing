@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'motion/react'
 
-const BEBAS = '"Bebas Neue", var(--font-bebas), sans-serif'
+const BEBAS = '"Bebas Neue", "Anton", Impact, sans-serif'
 
 export function AboutSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -13,132 +13,112 @@ export function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative px-8 md:px-16"
+      className="relative"
       style={{ background: 'var(--bg)', padding: '160px 64px' }}
     >
-      {/* Mosaic container — script overlaps its top edge */}
-      <div className="relative mt-16">
+      {/* Section label — Bebas, no script (script usage conserved to 3 places) */}
+      <motion.p
+        className="font-body tracking-[0.3em] uppercase mb-4"
+        style={{ color: 'var(--accent)', fontSize: 11 }}
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        About Revaan
+      </motion.p>
 
-        {/* "About" — absolute, overlaps top of first image */}
-        <motion.h2
-          className="font-script absolute select-none"
-          style={{
-            fontSize: 'clamp(64px, 10vw, 140px)',
-            color: 'var(--accent)',
-            top: '-0.45em',        // sits above the grid top, overlapping img1
-            left: '-4px',
-            zIndex: 20,
-            transform: 'rotate(-4deg)',
-            transformOrigin: 'top left',
-            lineHeight: 1,
-            pointerEvents: 'none',
-          }}
-          initial={{ opacity: 0, rotate: -8, y: 16 }}
-          animate={inView ? { opacity: 1, rotate: -4, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+      {/* Subheading — visible and prominent */}
+      <motion.h2
+        style={{
+          fontFamily: BEBAS,
+          fontSize: 'clamp(28px, 4vw, 52px)',
+          color: 'var(--text-primary)',
+          lineHeight: 1,
+          marginBottom: '3rem',
+        }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.08 }}
+      >
+        Premium streetwear, made for Indian streets.
+      </motion.h2>
+
+      {/* 3-col mosaic — variable heights */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+        <motion.div
+          className="relative overflow-hidden"
+          style={{ aspectRatio: '3/5' }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.05 }}
+          data-cursor-enlarge
         >
-          About
-        </motion.h2>
+          <Image src="/images/citybeats-2.jpg" alt="City Beats tee" fill className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]" sizes="33vw" />
+          <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.12)' }} />
+        </motion.div>
 
-        {/*
-          3-column mosaic — variable heights per column.
-          Images fill the column; text floats in a 4th column gap after the grid.
-        */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: 8,
-          }}
+        <motion.div
+          className="relative overflow-hidden"
+          style={{ aspectRatio: '3/4' }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.14 }}
+          data-cursor-enlarge
         >
-          {/* Image 1 — tallest */}
-          <motion.div
-            className="relative overflow-hidden"
-            style={{ aspectRatio: '3/5' }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.05 }}
-            data-cursor-enlarge
-          >
-            <Image
-              src="/images/citybeats-2.jpg"
-              alt="City Beats oversized tee"
-              fill
-              className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
-              sizes="33vw"
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.15)' }} />
-          </motion.div>
+          <Image src="/images/pulpy-2.jpg" alt="Pulpy tee" fill className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]" sizes="33vw" />
+          <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.12)' }} />
+        </motion.div>
 
-          {/* Image 2 — medium */}
-          <motion.div
-            className="relative overflow-hidden"
-            style={{ aspectRatio: '3/4' }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            data-cursor-enlarge
-          >
-            <Image
-              src="/images/pulpy-2.jpg"
-              alt="Pulpy oversized tee"
-              fill
-              className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
-              sizes="33vw"
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.15)' }} />
-          </motion.div>
+        <motion.div
+          className="relative overflow-hidden"
+          style={{ aspectRatio: '2/3' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.22 }}
+          data-cursor-enlarge
+        >
+          <Image src="/images/wavy-2.jpg" alt="Wavy Core tee" fill className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]" sizes="33vw" />
+          <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.12)' }} />
+        </motion.div>
+      </div>
 
-          {/* Image 3 — tall */}
-          <motion.div
-            className="relative overflow-hidden"
-            style={{ aspectRatio: '2/3' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.25 }}
-            data-cursor-enlarge
-          >
-            <Image
-              src="/images/wavy-2.jpg"
-              alt="Wavy Core oversized tee"
-              fill
-              className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
-              sizes="33vw"
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.15)' }} />
-          </motion.div>
-        </div>
+      {/* Copy — large, readable, two-column */}
+      <div className="grid grid-cols-2 gap-16 mt-10">
+        <motion.p
+          className="font-body leading-relaxed"
+          style={{ color: 'var(--text-muted)', fontSize: 'clamp(14px, 1.2vw, 18px)' }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        >
+          Revaan was born from a simple frustration — great streetwear in India
+          either felt too basic or too overpriced.
+          <br /><br />
+          So we built tees with weight, fall, and attitude. Oversized fits.
+          280 GSM premium cotton. Limited drops. Made for Indian streets, Indian
+          heat, and people who don&apos;t dress to disappear.
+        </motion.p>
 
-        {/* Copy — horizontal, readable, below mosaic in two blocks */}
-        <div className="grid grid-cols-2 gap-12 mt-10">
-          <motion.p
-            className="font-body text-sm leading-relaxed"
-            style={{ color: 'var(--text-muted)', maxWidth: 360 }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            Revaan was born from a simple frustration — great streetwear shouldn't cost a
-            fortune. Built in India, for India. Oversized tees that fit the attitude, not
-            just the body. 280 GSM premium cotton that outlasts the trend.
-          </motion.p>
-
-          <motion.p
-            className="font-body italic flex items-center"
+        <motion.div
+          className="flex items-end"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.52 }}
+        >
+          <p
+            className="font-body italic"
             style={{
               color: 'var(--text-primary)',
-              fontSize: 'clamp(15px, 1.5vw, 22px)',
-              lineHeight: 1.5,
+              fontSize: 'clamp(16px, 1.6vw, 24px)',
+              lineHeight: 1.55,
+              opacity: 0.85,
             }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.52 }}
           >
             &ldquo;Each piece is made to last.
             <br />
             Not to trend.&rdquo;
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </div>
     </section>
   )

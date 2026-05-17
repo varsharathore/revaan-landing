@@ -3,7 +3,8 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 
-const BEBAS = '"Bebas Neue", "Anton", Impact, sans-serif'
+const BEBAS  = '"Bebas Neue", "Anton", Impact, sans-serif'
+const SCRIPT = '"Cormorant", Georgia, serif'
 
 const products = [
   { name: 'Rebel With Revaan Tee',      price: '₹2,199', image: '/images/rebel-1.png',     height: 380, fit: 'contain' as const },
@@ -21,34 +22,33 @@ export function ProductShowcase() {
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-22%'])
 
   return (
-    <section
-      id="collection"
-      ref={ref}
-      style={{ background: 'var(--bg)', padding: '160px 0 0' }}
-    >
-      {/* Heading */}
+    <section id="collection" ref={ref} style={{ background: 'var(--bg)', padding: '160px 0 0' }}>
+      {/* Heading — "The Drop" is one of the 3 allowed Cormorant script uses */}
       <div className="px-8 md:px-16 flex items-end justify-between mb-12">
-        <div className="relative" style={{ paddingTop: '3rem' }}>
-          <motion.span
-            className="font-script absolute top-0 left-0"
-            style={{ fontSize: 'clamp(36px, 5vw, 70px)', color: 'var(--accent)' }}
-            initial={{ opacity: 0, rotate: -3 }}
-            animate={inView ? { opacity: 1, rotate: 0 } : {}}
-            transition={{ duration: 0.8 }}
+        <div className="relative" style={{ paddingTop: '2.5rem' }}>
+          <span
+            className="absolute top-0 left-0"
+            style={{
+              fontFamily: SCRIPT,
+              fontStyle: 'italic',
+              fontWeight: 300,
+              fontSize: 'clamp(30px, 4.5vw, 60px)',
+              color: 'var(--accent)',
+            }}
           >
             The Drop
-          </motion.span>
+          </span>
           <motion.h2
             style={{
               fontFamily: BEBAS,
-              fontSize: 'clamp(52px, 9vw, 9999px)',
+              fontSize: 'clamp(40px, 6.5vw, 80px)',
               color: 'var(--text-primary)',
               whiteSpace: 'nowrap',
               lineHeight: 1,
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            transition={{ duration: 0.7 }}
           >
             SS25 COLLECTION
           </motion.h2>
@@ -63,7 +63,7 @@ export function ProductShowcase() {
         </a>
       </div>
 
-      {/* Horizontal scroll — no overlays, no blend modes, flat black bg */}
+      {/* Horizontal scroll strip */}
       <div className="overflow-hidden pb-12">
         <motion.div
           className="flex gap-4 px-8 md:px-16"
@@ -81,9 +81,9 @@ export function ProductShowcase() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.07 }}
             >
-              {/* Clean product image — no darkening overlay, no blend mode */}
+              {/* Product image — slightly brightened filter so tees are clearly visible */}
               <div
-                className="relative overflow-hidden mb-3 transition-opacity duration-300 group-hover:opacity-80"
+                className="relative overflow-hidden mb-3"
                 style={{ height: product.height, background: '#0A0A0A' }}
               >
                 <Image
@@ -92,14 +92,27 @@ export function ProductShowcase() {
                   fill
                   className={`object-${product.fit} object-top transition-transform duration-700 group-hover:scale-[1.03]`}
                   sizes="220px"
+                  style={{ filter: 'brightness(1.08) contrast(1.02)' }}
                 />
               </div>
-              <p className="font-body text-sm" style={{ color: 'var(--text-primary)' }}>
+
+              {/* Card info */}
+              <p className="font-body text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
                 {product.price}
               </p>
-              <p className="font-body text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+              <p className="font-body text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                 {product.name}
               </p>
+              <p className="font-body tracking-[0.12em] uppercase mt-0.5" style={{ color: 'var(--text-muted)', fontSize: 9 }}>
+                280 GSM Oversized Fit
+              </p>
+              <a
+                href="https://berevaan.com/collections/all"
+                className="inline-block font-body text-xs tracking-[0.15em] uppercase mt-2"
+                style={{ color: 'var(--accent)', cursor: 'none' }}
+              >
+                View Tee →
+              </a>
             </motion.a>
           ))}
         </motion.div>

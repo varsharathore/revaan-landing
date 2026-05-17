@@ -69,7 +69,7 @@ body {
    Bebas Neue 400 = full-weight condensed (only weight this font has)
    Anton 400 = identical style, used as explicit fallback if Bebas fails to load */
 .font-display { font-family: 'Bebas Neue', var(--font-bebas), 'Anton', var(--font-anton), Impact, sans-serif; font-weight: 400; }
-.font-script  { font-family: 'Dancing Script', var(--font-dancing), cursive; }
+.font-script  { font-family: 'Cormorant', var(--font-cormorant), 'Georgia', serif; font-style: italic; font-weight: 300; }
 .font-body    { font-family: 'DM Sans', var(--font-dm-sans), system-ui, sans-serif; }
 
 /* Underline hover from left */

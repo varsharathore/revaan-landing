@@ -93,34 +93,38 @@ export function MaterialsAccordion() {
       className="px-8 md:px-16"
       style={{ background: 'var(--bg)', padding: '160px 64px', marginTop: '160px' }}
     >
-      {/* Heading */}
-      <div className="mb-16 relative">
-        <motion.span
-          className="font-script absolute left-0"
-          style={{ fontSize: 'clamp(64px, 9vw, 130px)', color: 'var(--accent)', top: '-0.5em', lineHeight: 1 }}
-          initial={{ opacity: 0, rotate: -5 }}
-          animate={inView ? { opacity: 1, rotate: -2 } : {}}
-          transition={{ duration: 0.8 }}
+      {/* Heading — Bebas only. Script removed from this section per brand rule. */}
+      <div className="mb-16">
+        <motion.p
+          className="font-body tracking-[0.3em] uppercase mb-3"
+          style={{ color: 'var(--accent)', fontSize: 11 }}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
         >
           Craft
-        </motion.span>
+        </motion.p>
         <motion.h2
-          className="font-display mt-16"
-          style={{ fontFamily: '"Bebas Neue", var(--font-bebas), sans-serif', fontSize: 'clamp(56px, 9vw, 120px)', color: 'var(--text-primary)' }}
+          style={{
+            fontFamily: '"Bebas Neue", "Anton", Impact, sans-serif',
+            fontSize: 'clamp(48px, 7vw, 100px)',
+            color: 'var(--text-primary)',
+            lineHeight: 0.95,
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
           280 GSM PREMIUM
         </motion.h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-16">
-        {/* Left — copy paragraphs */}
-        <div className="space-y-8">
+        {/* Left — updated copy + proof bullets */}
+        <div className="space-y-6">
           <motion.p
-            className="font-body text-sm leading-relaxed"
-            style={{ color: 'var(--text-muted)' }}
+            className="font-body leading-relaxed"
+            style={{ color: 'var(--text-muted)', fontSize: 'clamp(14px, 1.2vw, 17px)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -131,14 +135,43 @@ export function MaterialsAccordion() {
           </motion.p>
 
           <motion.p
-            className="font-body text-sm leading-relaxed md:ml-8"
+            className="font-body leading-relaxed"
+            style={{ color: 'var(--text-muted)', fontSize: 'clamp(14px, 1.2vw, 17px)' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.28 }}
+          >
+            280 GSM combed cotton. Pre-shrunk. Pigment-dyed in small batches.
+            Built to hold shape, weight, and colour.
+          </motion.p>
+
+          {/* Proof bullets */}
+          <motion.ul
+            className="space-y-2"
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.36 }}
+          >
+            {[
+              'Heavyweight without feeling stiff',
+              'Oversized fall with structure',
+              'Pigment-dyed for deeper colour',
+            ].map((point, i) => (
+              <li key={i} className="font-body flex items-start gap-3"
+                style={{ color: 'var(--text-primary)', fontSize: 'clamp(13px, 1.1vw, 16px)' }}>
+                <span style={{ color: 'var(--accent)', flexShrink: 0 }}>·</span>
+                {point}
+              </li>
+            ))}
+          </motion.ul>
+
+          <motion.p
+            className="font-body leading-relaxed md:ml-0"
             style={{ color: 'var(--text-muted)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            280 GSM combed cotton. Pre-shrunk. Pigment-dyed in small batches. The fabric
-            drapes with weight. The colours deepen with wear. These are tees you keep.
           </motion.p>
         </div>
 

@@ -51,25 +51,36 @@ export function Nav() {
         ))}
       </ul>
 
+      {/* SHOP CTA — high visibility, sharp border, red accent on hover */}
       <a
-        href="https://berevaan.com"
+        href="https://berevaan.com/collections/all"
         target="_blank"
         rel="noopener noreferrer"
-        className="font-body text-xs tracking-[0.2em] uppercase border px-4 py-2 transition-colors duration-300"
+        className="font-body text-xs tracking-[0.22em] uppercase transition-all duration-250"
         style={{
-          color: 'var(--text-primary)',
-          borderColor: 'rgba(255,255,255,0.2)',
+          color: 'var(--bg)',
+          background: 'var(--text-primary)',
+          border: '1px solid var(--text-primary)',
+          padding: '8px 18px',
+          letterSpacing: '0.22em',
+          fontWeight: 500,
+          cursor: 'none',
+          flexShrink: 0,
         }}
         onMouseEnter={e => {
-          ;(e.currentTarget as HTMLElement).style.background = 'var(--accent)'
-          ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)'
+          const el = e.currentTarget as HTMLElement
+          el.style.background = 'var(--accent)'
+          el.style.borderColor = 'var(--accent)'
+          el.style.color = 'var(--text-primary)'
         }}
         onMouseLeave={e => {
-          ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-          ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)'
+          const el = e.currentTarget as HTMLElement
+          el.style.background = 'var(--text-primary)'
+          el.style.borderColor = 'var(--text-primary)'
+          el.style.color = 'var(--bg)'
         }}
       >
-        Shop →
+        SHOP THE DROP →
       </a>
     </nav>
   )

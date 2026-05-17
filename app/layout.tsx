@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, Anton, Dancing_Script, DM_Sans } from 'next/font/google'
+import { Bebas_Neue, Anton, Cormorant, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LenisProvider } from '@/components/LenisProvider'
 import { CustomCursor } from '@/components/CustomCursor'
@@ -19,9 +19,13 @@ const anton = Anton({
   display: 'swap',
 })
 
-const dancingScript = Dancing_Script({
-  weight: ['400', '700'],
-  variable: '--font-dancing',
+// Cormorant italic — luxury editorial serif, replaces Dancing Script.
+// High-contrast strokes, refined letterforms. Feels like a fashion signature
+// without the casual "handwriting" quality of Dancing Script.
+const cormorant = Cormorant({
+  weight: ['300', '400'],
+  style: ['italic'],
+  variable: '--font-cormorant',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -51,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${anton.variable} ${dancingScript.variable} ${dmSans.variable}`}
+      className={`${bebasNeue.variable} ${anton.variable} ${cormorant.variable} ${dmSans.variable}`}
     >
       <head>
         {/* Preload scene images so no blank frames during scroll sequence */}
