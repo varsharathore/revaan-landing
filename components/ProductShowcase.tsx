@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 
 const BEBAS  = '"Bebas Neue", "Anton", Impact, sans-serif'
-const SCRIPT = '"Cormorant", Georgia, serif'
+const SCRIPT = '"Yellowtail", var(--font-yellowtail), cursive'
 
 /*
  * Editorial product grid — philosophy §6.
@@ -38,9 +38,8 @@ export function ProductShowcase() {
         <div className="relative" style={{ paddingTop: '2.5rem' }}>
           <span style={{
             fontFamily: SCRIPT,
-            fontStyle: 'italic',
-            fontWeight: 300,
-            fontSize: 'clamp(30px, 4.5vw, 60px)',
+            fontWeight: 400,
+            fontSize: 'clamp(26px, 3.8vw, 52px)',
             color: 'var(--accent)',
             position: 'absolute',
             top: 0, left: 0,

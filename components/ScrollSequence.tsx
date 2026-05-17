@@ -4,11 +4,10 @@ import Image from 'next/image'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 
 const BEBAS   = '"Bebas Neue", "Anton", Impact, sans-serif'
-const SCRIPT  = '"Cormorant", Georgia, serif'
+const SCRIPT  = '"Yellowtail", var(--font-yellowtail), cursive'
 
-// Single panel bg across all scenes — left photo bg matches right panel bg
-// All studio photos are shot on the same white/off-white → unified feel
-const PANEL = '#F5F2EE'
+// Single panel bg — matches page --bg exactly so left/right read as one surface
+const PANEL = '#F8F4EF'
 
 const scenes = [
   {
@@ -177,7 +176,7 @@ export function ScrollSequence() {
 
                 {scene.showScript && (
                   <span style={{
-                    fontFamily: SCRIPT, fontStyle: 'italic', fontWeight: 300,
+                    fontFamily: SCRIPT, fontWeight: 400,
                     fontSize: 'clamp(22px, 2.8vw, 40px)',
                     color: scene.scriptColor, lineHeight: 1, display: 'block',
                   }}>{scene.script}</span>

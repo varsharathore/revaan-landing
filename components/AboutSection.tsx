@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 
 const BEBAS  = '"Bebas Neue", "Anton", Impact, sans-serif'
-const SCRIPT = '"Cormorant", Georgia, serif'
+const SCRIPT = '"Yellowtail", var(--font-yellowtail), cursive'
 
 export function AboutSection() {
   const ref  = useRef<HTMLDivElement>(null)
@@ -29,9 +29,8 @@ export function AboutSection() {
           className="select-none absolute"
           style={{
             fontFamily: SCRIPT,
-            fontStyle: 'italic',
-            fontWeight: 300,
-            fontSize: 'clamp(80px, 14vw, 200px)',
+            fontWeight: 400,
+            fontSize: 'clamp(60px, 11vw, 160px)',
             color: 'var(--accent)',
             top: '-0.28em',
             left: '-8px',

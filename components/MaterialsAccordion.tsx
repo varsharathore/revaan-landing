@@ -1,6 +1,10 @@
 'use client'
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView, AnimatePresence } from 'motion/react'
+
+const BEBAS  = '"Bebas Neue", "Anton", Impact, sans-serif'
+const SCRIPT = '"Yellowtail", var(--font-yellowtail), cursive'
 
 const items = [
   {
@@ -30,36 +34,26 @@ const items = [
   },
 ]
 
-function AccordionItem({ title, content, index }: { title: string; content: string; index: number }) {
+function AccordionItem({ title, content }: { title: string; content: string; index: number }) {
   const [open, setOpen] = useState(false)
-
   return (
-    <div
-      style={{ borderBottom: '1px solid rgba(20,18,16,0.1)' }}
-    >
+    <div style={{ borderBottom: '1px solid rgba(20,18,16,0.1)' }}>
       <button
         className="w-full flex items-center justify-between py-5 text-left"
         style={{ cursor: 'none' }}
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
-        <span
-          className="font-body text-sm tracking-[0.15em] uppercase"
-          style={{ color: 'var(--text-primary)' }}
-        >
+        <span className="font-body text-sm tracking-[0.15em] uppercase" style={{ color: 'var(--text-primary)' }}>
           {title}
         </span>
         <span
           className="font-body text-lg transition-transform duration-300"
-          style={{
-            color: 'var(--text-muted)',
-            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
-          }}
+          style={{ color: 'var(--text-muted)', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}
         >
           +
         </span>
       </button>
-
       <AnimatePresence>
         {open && (
           <motion.div
@@ -69,10 +63,7 @@ function AccordionItem({ title, content, index }: { title: string; content: stri
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: 'hidden' }}
           >
-            <p
-              className="font-body text-sm leading-relaxed pb-5"
-              style={{ color: 'var(--text-muted)', maxWidth: 420 }}
-            >
+            <p className="font-body text-sm leading-relaxed pb-5" style={{ color: 'var(--text-muted)', maxWidth: 400 }}>
               {content}
             </p>
           </motion.div>
@@ -83,112 +74,141 @@ function AccordionItem({ title, content, index }: { title: string; content: stri
 }
 
 export function MaterialsAccordion() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
+  const ref    = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
     <section
       id="craft"
       ref={ref}
-      className="px-8 md:px-16"
-      style={{ background: 'var(--bg)', padding: '60px 64px 80px' }}
+      className="relative overflow-hidden"
+      style={{ background: 'var(--bg)', padding: '80px 0 100px' }}
     >
-      {/* Heading — 11vw so it clips the right edge. Overlaps into the grid below via negative margin-bottom. */}
-      <div style={{ marginBottom: '-1.5rem', overflow: 'hidden' }}>
-        <motion.p
-          className="font-body tracking-[0.3em] uppercase mb-2"
-          style={{ color: 'var(--accent)', fontSize: 11 }}
+      {/* ── Main grid: left image collage | right content ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '44% 56%', alignItems: 'start' }}>
+
+        {/* LEFT — editorial image stagger, matches Behance layout */}
+        <motion.div
+          className="relative"
+          style={{ paddingLeft: 64, paddingRight: 20 }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          Craft
-        </motion.p>
-        <motion.h2
-          style={{
-            fontFamily: '"Bebas Neue", "Anton", Impact, sans-serif',
-            // 11vw: clips right edge of section intentionally (philosophy §4)
-            fontSize: 'clamp(60px, 11vw, 9999px)',
-            color: 'var(--text-primary)',
-            lineHeight: 0.9,
-            whiteSpace: 'nowrap',
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          280 GSM PREMIUM
-        </motion.h2>
-      </div>
+          {/* Two images at different heights */}
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            {/* Tall image */}
+            <div
+              className="relative overflow-hidden flex-shrink-0"
+              style={{ width: '56%', height: 460 }}
+              data-cursor-enlarge
+            >
+              <Image
+                src="/images/pulpy-2.jpg"
+                alt="280 GSM premium cotton"
+                fill
+                className="object-cover object-center"
+                sizes="22vw"
+              />
+            </div>
+            {/* Short image, offset down */}
+            <div
+              className="relative overflow-hidden flex-shrink-0"
+              style={{ width: '40%', height: 300, marginTop: 80 }}
+              data-cursor-enlarge
+            >
+              <Image
+                src="/images/wavy-2.jpg"
+                alt="Revaan oversized fit"
+                fill
+                className="object-cover object-center"
+                sizes="16vw"
+              />
+            </div>
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-16">
-        {/* Left — updated copy + proof bullets */}
-        <div className="space-y-6">
-          <motion.p
-            className="font-body leading-relaxed"
-            style={{ color: 'var(--text-muted)', fontSize: 'clamp(14px, 1.2vw, 17px)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+          {/* VIEW ALL link beneath left grid */}
+          <motion.a
+            href="https://berevaan.com/collections/all"
+            target="_blank" rel="noopener noreferrer"
+            className="hover-underline font-body tracking-[0.2em] uppercase inline-block mt-5"
+            style={{ color: 'var(--text-muted)', fontSize: 10, cursor: 'none' }}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            VIEW ALL ↗
+          </motion.a>
+        </motion.div>
+
+        {/* RIGHT — section title + body + accordion */}
+        <motion.div
+          style={{ paddingRight: 64, paddingLeft: 24, paddingTop: '1rem' }}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <p
+            className="font-body tracking-[0.3em] uppercase mb-3"
+            style={{ color: 'var(--accent)', fontSize: 11 }}
+          >
+            Craft
+          </p>
+
+          {/* Bleed heading — clips right edge */}
+          <div style={{ overflow: 'hidden', marginBottom: '-0.5rem' }}>
+            <h2
+              style={{
+                fontFamily: BEBAS,
+                fontSize: 'clamp(56px, 9vw, 9999px)',
+                color: 'var(--text-primary)',
+                lineHeight: 0.88,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              280 GSM PREMIUM
+            </h2>
+          </div>
+
+          <p
+            className="font-body leading-relaxed mt-5 mb-8"
+            style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 1.1vw, 16px)', maxWidth: 340 }}
           >
             Not every tee is made equal. Most streetwear brands chase margin — thinner
             fabric, looser stitching, colours that fade after five washes. We went the
-            other way.
-          </motion.p>
+            other way. 280 GSM combed cotton, pre-shrunk, pigment-dyed in small batches.
+          </p>
 
-          <motion.p
-            className="font-body leading-relaxed"
-            style={{ color: 'var(--text-muted)', fontSize: 'clamp(14px, 1.2vw, 17px)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.28 }}
-          >
-            280 GSM combed cotton. Pre-shrunk. Pigment-dyed in small batches.
-            Built to hold shape, weight, and colour.
-          </motion.p>
-
-          {/* Proof bullets */}
-          <motion.ul
-            className="space-y-2"
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.36 }}
-          >
-            {[
-              'Heavyweight without feeling stiff',
-              'Oversized fall with structure',
-              'Pigment-dyed for deeper colour',
-            ].map((point, i) => (
-              <li key={i} className="font-body flex items-start gap-3"
-                style={{ color: 'var(--text-primary)', fontSize: 'clamp(13px, 1.1vw, 16px)' }}>
-                <span style={{ color: 'var(--accent)', flexShrink: 0 }}>·</span>
-                {point}
-              </li>
+          {/* Accordion */}
+          <div style={{ borderTop: '1px solid rgba(20,18,16,0.1)' }}>
+            {items.map((item, i) => (
+              <AccordionItem key={i} {...item} index={i} />
             ))}
-          </motion.ul>
-
-          <motion.p
-            className="font-body leading-relaxed md:ml-0"
-            style={{ color: 'var(--text-muted)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
-          </motion.p>
-        </div>
-
-        {/* Right — accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          style={{ borderTop: '1px solid rgba(20,18,16,0.1)' }}
-        >
-          {items.map((item, i) => (
-            <AccordionItem key={i} {...item} index={i} />
-          ))}
+          </div>
         </motion.div>
       </div>
+
+      {/* "Craft" Yellowtail script — floats across the left/right boundary */}
+      <motion.div
+        className="absolute pointer-events-none select-none"
+        style={{ top: '42%', left: '18%', zIndex: 10 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span
+          style={{
+            fontFamily: SCRIPT,
+            fontWeight: 400,
+            fontSize: 'clamp(70px, 10vw, 140px)',
+            color: 'var(--accent)',
+            lineHeight: 1,
+            opacity: 0.92,
+          }}
+        >
+          Craft
+        </span>
+      </motion.div>
     </section>
   )
 }

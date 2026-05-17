@@ -34,8 +34,10 @@ html {
   background: var(--bg);
   color: var(--text-primary);
   scroll-behavior: auto !important;
-  overflow: hidden;
+  overflow-x: hidden;        /* allow scrollTop updates — GSAP ScrollTrigger reads window.scrollY */
+  scrollbar-width: none;     /* Firefox */
 }
+html::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 body {
   background: var(--bg);
@@ -71,7 +73,7 @@ body {
    Bebas Neue 400 = full-weight condensed (only weight this font has)
    Anton 400 = identical style, used as explicit fallback if Bebas fails to load */
 .font-display { font-family: 'Bebas Neue', var(--font-bebas), 'Anton', var(--font-anton), Impact, sans-serif; font-weight: 400; }
-.font-script  { font-family: 'Cormorant', var(--font-cormorant), 'Georgia', serif; font-style: italic; font-weight: 300; }
+.font-script  { font-family: 'Yellowtail', var(--font-yellowtail), cursive; font-weight: 400; }
 .font-body    { font-family: 'DM Sans', var(--font-dm-sans), system-ui, sans-serif; }
 
 /* Underline hover from left */
