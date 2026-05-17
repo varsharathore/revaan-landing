@@ -21,7 +21,7 @@ export function AboutSection() {
       id="about"
       ref={ref}
       className="relative"
-      style={{ background: 'var(--bg)', padding: '80px 64px 160px' }}
+      style={{ background: 'var(--bg)', padding: '80px 64px 80px' }}
     >
       <div className="relative">
         {/* Script "About" — overlaps grid top. Layer 4 (above images). */}
@@ -81,7 +81,7 @@ export function AboutSection() {
           {/* Text block — sits between images in same plane */}
           <motion.div
             className="flex flex-col justify-end"
-            style={{ gridColumn: '2', paddingTop: '5rem', paddingBottom: '1rem' }}
+            style={{ gridColumn: '2', paddingTop: '10rem', paddingBottom: '1rem' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.22 }}

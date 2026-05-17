@@ -58,9 +58,9 @@ export function Nav() {
         rel="noopener noreferrer"
         className="font-body text-xs tracking-[0.22em] uppercase transition-all duration-250"
         style={{
-          color: 'var(--bg)',
-          background: 'var(--text-primary)',
-          border: '1px solid var(--text-primary)',
+          color: '#F8F4EF',
+          background: 'var(--accent)',
+          border: '1px solid var(--accent)',
           padding: '8px 18px',
           letterSpacing: '0.22em',
           fontWeight: 500,
@@ -69,15 +69,13 @@ export function Nav() {
         }}
         onMouseEnter={e => {
           const el = e.currentTarget as HTMLElement
-          el.style.background = 'var(--accent)'
-          el.style.borderColor = 'var(--accent)'
-          el.style.color = '#F8F4EF'  // cream on red
+          el.style.background = 'var(--accent-bright)'
+          el.style.borderColor = 'var(--accent-bright)'
         }}
         onMouseLeave={e => {
           const el = e.currentTarget as HTMLElement
-          el.style.background = 'var(--text-primary)'
-          el.style.borderColor = 'var(--text-primary)'
-          el.style.color = 'var(--bg)'
+          el.style.background = 'var(--accent)'
+          el.style.borderColor = 'var(--accent)'
         }}
       >
         SHOP THE DROP →

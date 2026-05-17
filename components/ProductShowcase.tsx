@@ -26,14 +26,15 @@ const products = [
 export function ProductShowcase() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  // Horizontal parallax on the strip — vertical scroll → horizontal movement
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
+  // Start parallax only when section top reaches viewport top (not before)
+  // — prevents strip from being pre-shifted when section first comes into view
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'], { clamp: true })
 
   return (
-    <section id="collection" ref={ref} style={{ background: 'var(--bg)', padding: '160px 0 0' }}>
+    <section id="collection" ref={ref} style={{ background: 'var(--bg)', padding: '20px 0 0' }}>
       {/* Heading */}
-      <div className="px-8 md:px-16 flex items-end justify-between mb-10">
+      <div className="px-8 md:px-16 flex items-end gap-8 mb-10">
         <div className="relative" style={{ paddingTop: '2.5rem' }}>
           <span style={{
             fontFamily: SCRIPT,
@@ -65,7 +66,7 @@ export function ProductShowcase() {
         <a
           href="https://berevaan.com/collections/all"
           target="_blank" rel="noopener noreferrer"
-          className="hover-underline font-body text-xs tracking-[0.2em] uppercase flex-shrink-0 ml-8"
+          className="hover-underline font-body text-xs tracking-[0.2em] uppercase flex-shrink-0"
           style={{ color: 'var(--text-muted)', cursor: 'none' }}
         >
           VIEW ALL ↗

@@ -40,7 +40,7 @@ export function StatementSection() {
     <section
       ref={ref}
       className="relative overflow-hidden"
-      style={{ padding: '180px 64px', background: 'var(--bg)' }}
+      style={{ padding: '80px 64px 10px', background: 'var(--bg)' }}
     >
       <div className="relative">
         {/* Layer 3 (display text) — moves 1.3× */}
@@ -67,7 +67,7 @@ export function StatementSection() {
           style={{
             fontFamily: BEBAS,
             fontSize: 'clamp(80px, 18vw, 9999px)',
-            color: 'var(--text-muted)',
+            color: 'var(--text-primary)',
             lineHeight: 0.88,
             whiteSpace: 'nowrap',
             overflow: 'hidden',

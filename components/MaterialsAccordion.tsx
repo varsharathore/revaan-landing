@@ -91,7 +91,7 @@ export function MaterialsAccordion() {
       id="craft"
       ref={ref}
       className="px-8 md:px-16"
-      style={{ background: 'var(--bg)', padding: '160px 64px', marginTop: '160px' }}
+      style={{ background: 'var(--bg)', padding: '60px 64px 80px' }}
     >
       {/* Heading — 11vw so it clips the right edge. Overlaps into the grid below via negative margin-bottom. */}
       <div style={{ marginBottom: '-1.5rem', overflow: 'hidden' }}>

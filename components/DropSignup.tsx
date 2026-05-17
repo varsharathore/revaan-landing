@@ -20,7 +20,7 @@ export function DropSignup() {
       id="drop"
       ref={ref}
       className="relative flex flex-col items-center text-center"
-      style={{ background: 'var(--bg)', padding: '140px 32px', overflow: 'hidden' }}
+      style={{ background: 'var(--bg)', padding: '80px 32px', overflow: 'hidden' }}
     >
       {/* "DROP" — faint background texture only. 2% opacity. */}
       <span
