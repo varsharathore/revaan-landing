@@ -7,22 +7,24 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
       /*
-       * lerp (linear interpolation) is the YSL/high-end scroll approach.
-       * Each frame: current_pos += (target_pos - current_pos) * lerp
-       * 0.08 = very smooth, slight lag → liquid feel.
-       * Higher (0.15+) = snappier but less premium.
-       * Lower (0.05) = dreamy but can feel unresponsive.
+       * lerp: lower = slower deceleration = more liquid/YSL feel.
+       * 0.06: each frame moves 6% of remaining distance to target.
+       * Feels like scrolling through thick oil — natural momentum stop.
        */
-      lerp: 0.08,
+      lerp: 0.06,
 
-      // Prevent over-scrolling on trackpad momentum (macOS)
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
+      /*
+       * wheelMultiplier: scales incoming wheel/trackpad delta.
+       * macOS trackpad generates ~300-600px cumulative delta per swipe.
+       * At 0.5: a 400px swipe moves the page 200px — much more controlled.
+       * Was 0.9 → 1 swipe = ~2 sections. Now 0.5 → 1 swipe = ~1 section.
+       */
+      wheelMultiplier: 0.5,
 
-      // Smooth wheel events (default true, being explicit)
+      // Touch feels natural at 1.0 — same sensitivity as native
+      touchMultiplier: 1.0,
+
       smoothWheel: true,
-
-      // Orientation
       orientation: 'vertical',
       gestureOrientation: 'vertical',
     })
