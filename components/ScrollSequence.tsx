@@ -6,6 +6,10 @@ import { gsap, ScrollTrigger } from '@/lib/gsap'
 const BEBAS   = '"Bebas Neue", "Anton", Impact, sans-serif'
 const SCRIPT  = '"Cormorant", Georgia, serif'
 
+// Single panel bg across all scenes — left photo bg matches right panel bg
+// All studio photos are shot on the same white/off-white → unified feel
+const PANEL = '#F5F2EE'
+
 const scenes = [
   {
     num: '01',
@@ -14,12 +18,11 @@ const scenes = [
     headline: ['BE', 'UNAPOLOGETIC'],
     body: 'Designed for the streets. Worn by those who don\'t ask for permission.',
     cta: 'View Collection',
-    // White-bg images together — consistent background throughout the hero
-    leftImage: '/images/liar-1.jpg',
-    leftAlt: 'F*cking Liar tee — group',
+    leftImage: '/images/liar-2.jpg',   // user requested: start with this
+    leftAlt: 'F*cking Liar tee — solo',
     productImage: '/images/rebel-1.png',
     productAlt: 'Rebel With Revaan tee',
-    panelBg: '#F5F0E5',
+    panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
     scriptColor: '#C8371A',
@@ -34,10 +37,10 @@ const scenes = [
     body: '280 GSM · Superior fall. The weight you feel. The statement you make.',
     cta: 'Shop Now',
     leftImage: '/images/wavy-1.jpg',
-    leftAlt: 'Wavy Core tee — couple, white bg',
-    productImage: '/images/liar-2.jpg',
-    productAlt: 'F*cking Liar tee — solo',
-    panelBg: '#EFECEA',
+    leftAlt: 'Wavy Core tee — couple',
+    productImage: '/images/liar-1.jpg',
+    productAlt: 'F*cking Liar tee — group',
+    panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
     scriptColor: '#C8371A',
@@ -52,10 +55,10 @@ const scenes = [
     body: 'Lightweight yet durable. Every thread engineered for the long run.',
     cta: 'Our Story',
     leftImage: '/images/pulpy-1.jpg',
-    leftAlt: 'Pulpy tee — model, white bg',
+    leftAlt: 'Pulpy tee — model',
     productImage: '/images/pulpy-2.jpg',
-    productAlt: 'Pulpy tee — group, white bg',
-    panelBg: '#F3F1EE',
+    productAlt: 'Pulpy tee — group',
+    panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
     scriptColor: '#C8371A',
@@ -123,13 +126,13 @@ export function ScrollSequence() {
             ref={(el) => { sceneRefs.current[i] = el }}
             className="absolute inset-0 flex"
           >
-            {/* ── LEFT 65%: lifestyle image, full-bleed ── */}
-            <div className="relative overflow-hidden" style={{ width: '65%' }}>
+            {/* ── LEFT 65%: lifestyle image — bg matches right panel ── */}
+            <div className="relative overflow-hidden" style={{ width: '65%', background: PANEL }}>
               <Image
                 src={scene.leftImage}
                 alt={scene.leftAlt}
                 fill
-                className="object-cover object-center"
+                className="object-cover object-top"
                 sizes="65vw"
                 priority={i === 0}
               />
@@ -142,7 +145,7 @@ export function ScrollSequence() {
                 style={{ color: 'rgba(20,18,16,0.35)', fontSize: 10 }}>SS25 · Revaan</p>
             </div>
 
-            <div style={{ width: '1px', background: 'rgba(20,18,16,0.12)', flexShrink: 0 }} />
+            {/* No separator — left and right share the same bg color */}
 
             {/* ── RIGHT 35%: bg = exact product photo background ── */}
             <div
