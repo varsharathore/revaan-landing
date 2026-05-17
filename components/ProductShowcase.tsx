@@ -117,7 +117,7 @@ export function ProductShowcase() {
                   src={p.image}
                   alt={p.name}
                   fill
-                  className={`object-${p.fit} object-top transition-transform duration-700 group-hover:scale-[1.04]`}
+                  className={`object-${p.fit} object-top img-blend transition-transform duration-700 group-hover:scale-[1.04]`}
                   sizes="220px"
                   style={{ filter: 'brightness(1.08) contrast(1.02)' }}
                 />

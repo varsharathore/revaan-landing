@@ -131,7 +131,7 @@ export function ScrollSequence() {
                 src={scene.leftImage}
                 alt={scene.leftAlt}
                 fill
-                className="object-contain object-bottom"
+                className="object-contain object-bottom img-blend"
                 sizes="65vw"
                 priority={i === 0}
               />
@@ -170,7 +170,7 @@ export function ScrollSequence() {
                     src={scene.productImage}
                     alt={scene.productAlt}
                     fill
-                    className="object-contain object-bottom"
+                    className="object-contain object-bottom img-blend"
                     sizes="260px"
                   />
                 </div>

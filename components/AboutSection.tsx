@@ -71,10 +71,9 @@ export function AboutSection() {
               src="/images/rebel-woman-solo.png"
               alt="Revaan tee"
               fill
-              className="object-cover object-center"
+              className="object-contain object-bottom img-blend"
               sizes="25vw"
             />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.1)' }} />
           </motion.div>
 
           {/* Text block — sits between images in same plane */}
@@ -116,10 +115,9 @@ export function AboutSection() {
               src="/images/wavy-duo.png"
               alt="Revaan tee"
               fill
-              className="object-cover object-center"
+              className="object-contain object-bottom img-blend"
               sizes="25vw"
             />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.1)' }} />
           </motion.div>
 
           {/* Image 3 — fastest parallax (surface layer) */}
@@ -135,10 +133,9 @@ export function AboutSection() {
               src="/images/liar-group.png"
               alt="Revaan tee"
               fill
-              className="object-cover object-center"
+              className="object-contain object-bottom img-blend"
               sizes="25vw"
             />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.1)' }} />
           </motion.div>
         </div>
 

@@ -72,7 +72,7 @@ export function LetterformsSection() {
             src="/images/rebel-flat.png"
             alt="Rebel With Revaan tee"
             fill
-            className="object-contain"
+            className="object-contain img-blend"
             sizes="230px"
           />
           {/* Price pill — sticker, rotated, corner-anchored */}
@@ -110,7 +110,7 @@ export function LetterformsSection() {
             src="/images/liar-man-solo.png"
             alt="F*cking Liar tee"
             fill
-            className="object-cover object-top"
+            className="object-contain img-blend"
             sizes="190px"
           />
           <div style={{

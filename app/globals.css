@@ -76,6 +76,9 @@ body {
 .font-script  { font-family: 'Yellowtail', var(--font-yellowtail), cursive; font-weight: 400; }
 .font-body    { font-family: 'DM Sans', var(--font-dm-sans), system-ui, sans-serif; }
 
+/* Cutout model images — multiply blends white/grey checker bg into cream page */
+.img-blend { mix-blend-mode: multiply; }
+
 /* Underline hover from left */
 .hover-underline {
   position: relative;
