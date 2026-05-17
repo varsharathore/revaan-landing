@@ -14,12 +14,12 @@ const SCRIPT = '"Yellowtail", var(--font-yellowtail), cursive'
  * NOT repeat(N, 1fr). That's Shopify.
  */
 const products = [
-  { name: 'Rebel With Revaan Tee',      price: '₹2,199', image: '/images/rebel-flat.png',       h: 440, mt: 0,   colW: 1.3,  fit: 'contain' as const, bg: '#F5F0E8' },
-  { name: 'City Beats Oversized Tee',   price: '₹1,999', image: '/images/pulpy-group.png',      h: 360, mt: 80,  colW: 0.85, fit: 'contain' as const, bg: '#E8EFF8' },
-  { name: 'Pulpy Oversized Tee',        price: '₹1,999', image: '/images/pulpy-woman-solo.png', h: 480, mt: 0,   colW: 1.1,  fit: 'contain' as const, bg: '#EBF0F8' },
-  { name: 'Wavy Core Oversized Tee',    price: '₹2,099', image: '/images/wavy-group.png',       h: 400, mt: 40,  colW: 0.95, fit: 'contain' as const, bg: '#EBEBEB' },
-  { name: 'F*cking Liar Oversized Tee', price: '₹2,199', image: '/images/liar-group.png',       h: 440, mt: 0,   colW: 1.05, fit: 'contain' as const, bg: '#F5ECEA' },
-  { name: 'BE UNAPOLOGETIC Tee',        price: '₹2,199', image: '/images/rebel-back.png',       h: 400, mt: 60,  colW: 0.9,  fit: 'contain' as const, bg: '#F0EDE8' },
+  { name: 'Rebel With Revaan Tee',      price: '₹2,199', image: '/images/rebel-1_transparent.png',    h: 440, mt: 0,   colW: 1.3,  fit: 'contain' as const, bg: '#F5F0E8', blend: true  },
+  { name: 'City Beats Oversized Tee',   price: '₹1,999', image: '/images/citybeats-1_transparent.png', h: 360, mt: 80,  colW: 0.85, fit: 'cover'   as const, bg: '#2C4A54', blend: false },
+  { name: 'Pulpy Oversized Tee',        price: '₹1,999', image: '/images/pulpy-1_transparent.png',    h: 480, mt: 0,   colW: 1.1,  fit: 'contain' as const, bg: '#EBF0F8', blend: true  },
+  { name: 'Wavy Core Oversized Tee',    price: '₹2,099', image: '/images/wavy-1_transparent.png',     h: 400, mt: 40,  colW: 0.95, fit: 'contain' as const, bg: '#EBEBEB', blend: true  },
+  { name: 'F*cking Liar Oversized Tee', price: '₹2,199', image: '/images/liar-1_transparent.png',     h: 440, mt: 0,   colW: 1.05, fit: 'contain' as const, bg: '#F5ECEA', blend: true  },
+  { name: 'BE UNAPOLOGETIC Tee',        price: '₹2,199', image: '/images/rebel-2_transparent.png',    h: 400, mt: 60,  colW: 0.9,  fit: 'contain' as const, bg: '#F0EDE8', blend: true  },
 ]
 
 export function ProductShowcase() {
@@ -117,7 +117,7 @@ export function ProductShowcase() {
                   src={p.image}
                   alt={p.name}
                   fill
-                  className={`object-${p.fit} object-top img-blend transition-transform duration-700 group-hover:scale-[1.04]`}
+                  className={`object-${p.fit} object-top ${p.blend ? 'img-blend' : ''} transition-transform duration-700 group-hover:scale-[1.04]`}
                   sizes="220px"
                   style={{ filter: 'brightness(1.08) contrast(1.02)' }}
                 />

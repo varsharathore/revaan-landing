@@ -114,7 +114,7 @@ export function MaterialsAccordion() {
               data-cursor-enlarge
             >
               <Image
-                src="/images/rebel-woman-solo.png"
+                src="/images/pulpy-1_transparent.png"
                 alt="280 GSM premium cotton"
                 fill
                 className="object-contain object-bottom img-blend"
@@ -128,7 +128,7 @@ export function MaterialsAccordion() {
               data-cursor-enlarge
             >
               <Image
-                src="/images/rebel-back.png"
+                src="/images/rebel-2_transparent.png"
                 alt="Revaan oversized fit"
                 fill
                 className="object-contain object-bottom img-blend"

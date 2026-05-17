@@ -55,12 +55,12 @@ export default function RootLayout({
     >
       <head>
         {/* Preload hero scene images — all 3 left panels + right products */}
-        <link rel="preload" as="image" href="/images/liar-man-solo.png" />
-        <link rel="preload" as="image" href="/images/wavy-group.png" />
-        <link rel="preload" as="image" href="/images/pulpy-group.png" />
-        <link rel="preload" as="image" href="/images/rebel-flat.png" />
-        <link rel="preload" as="image" href="/images/rebel-man-rack.png" />
-        <link rel="preload" as="image" href="/images/rebel-back.png" />
+        <link rel="preload" as="image" href="/images/liar-2_transparent.png" />
+        <link rel="preload" as="image" href="/images/wavy-1_transparent.png" />
+        <link rel="preload" as="image" href="/images/pulpy-2_transparent.png" />
+        <link rel="preload" as="image" href="/images/rebel-1_transparent.png" />
+        <link rel="preload" as="image" href="/images/wavy-2_transparent.png" />
+        <link rel="preload" as="image" href="/images/rebel-2_transparent.png" />
       </head>
       <body>
         <LenisProvider>
