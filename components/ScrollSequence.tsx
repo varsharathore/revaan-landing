@@ -17,9 +17,9 @@ const scenes = [
     headline: ['BE', 'UNAPOLOGETIC'],
     body: 'Designed for the streets. Worn by those who don\'t ask for permission.',
     cta: 'View Collection',
-    leftImage: '/images/liar-2.jpg',   // user requested: start with this
+    leftImage: '/images/liar-man-solo.png',
     leftAlt: 'F*cking Liar tee — solo',
-    productImage: '/images/rebel-1.png',
+    productImage: '/images/rebel-flat.png',
     productAlt: 'Rebel With Revaan tee',
     panelBg: PANEL,
     textHead: '#141210',
@@ -35,10 +35,10 @@ const scenes = [
     headline: ['REBEL WITH', 'REVAAN'],
     body: '280 GSM · Superior fall. The weight you feel. The statement you make.',
     cta: 'Shop Now',
-    leftImage: '/images/wavy-1.jpg',
-    leftAlt: 'Wavy Core tee — couple',
-    productImage: '/images/liar-1.jpg',
-    productAlt: 'F*cking Liar tee — group',
+    leftImage: '/images/wavy-group.png',
+    leftAlt: 'Wavy Core tee — group',
+    productImage: '/images/rebel-man-rack.png',
+    productAlt: 'Rebel With Revaan — editorial',
     panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
@@ -53,10 +53,10 @@ const scenes = [
     headline: ['BUILT', 'TO LAST'],
     body: 'Lightweight yet durable. Every thread engineered for the long run.',
     cta: 'Our Story',
-    leftImage: '/images/pulpy-1.jpg',
-    leftAlt: 'Pulpy tee — model',
-    productImage: '/images/pulpy-2.jpg',
-    productAlt: 'Pulpy tee — group',
+    leftImage: '/images/pulpy-group.png',
+    leftAlt: 'Pulpy tee — group',
+    productImage: '/images/rebel-back.png',
+    productAlt: 'Rebel With Revaan — back',
     panelBg: PANEL,
     textHead: '#141210',
     textBody: '#6A6460',
@@ -131,7 +131,7 @@ export function ScrollSequence() {
                 src={scene.leftImage}
                 alt={scene.leftAlt}
                 fill
-                className="object-cover object-top"
+                className="object-contain object-bottom"
                 sizes="65vw"
                 priority={i === 0}
               />
@@ -165,13 +165,13 @@ export function ScrollSequence() {
                 className="flex-1 flex items-center justify-center relative"
                 style={{ minHeight: 0, padding: '44px 16px 16px' }}
               >
-                <div className="relative" style={{ width: 280, height: 340, flexShrink: 0 }}>
+                <div className="relative" style={{ width: 260, height: 420, flexShrink: 0 }}>
                   <Image
                     src={scene.productImage}
                     alt={scene.productAlt}
                     fill
-                    className="object-contain"
-                    sizes="280px"
+                    className="object-contain object-bottom"
+                    sizes="260px"
                   />
                 </div>
               </div>

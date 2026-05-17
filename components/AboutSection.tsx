@@ -68,7 +68,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/citybeats-2.jpg"
+              src="/images/rebel-woman-solo.png"
               alt="Revaan tee"
               fill
               className="object-cover object-center"
@@ -113,7 +113,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/pulpy-2.jpg"
+              src="/images/wavy-duo.png"
               alt="Revaan tee"
               fill
               className="object-cover object-center"
@@ -132,7 +132,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/wavy-2.jpg"
+              src="/images/liar-group.png"
               alt="Revaan tee"
               fill
               className="object-cover object-center"

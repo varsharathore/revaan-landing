@@ -54,13 +54,13 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${anton.variable} ${yellowtail.variable} ${dmSans.variable}`}
     >
       <head>
-        {/* Preload scene images so no blank frames during scroll sequence */}
-        <link rel="preload" as="image" href="/images/citybeats-1.jpg" />
-        <link rel="preload" as="image" href="/images/pulpy-1.jpg" />
-        <link rel="preload" as="image" href="/images/wavy-1.jpg" />
-        <link rel="preload" as="image" href="/images/rebel-1.png" />
-        <link rel="preload" as="image" href="/images/rebel-2.png" />
-        <link rel="preload" as="image" href="/images/liar-1.jpg" />
+        {/* Preload hero scene images — all 3 left panels + right products */}
+        <link rel="preload" as="image" href="/images/liar-man-solo.png" />
+        <link rel="preload" as="image" href="/images/wavy-group.png" />
+        <link rel="preload" as="image" href="/images/pulpy-group.png" />
+        <link rel="preload" as="image" href="/images/rebel-flat.png" />
+        <link rel="preload" as="image" href="/images/rebel-man-rack.png" />
+        <link rel="preload" as="image" href="/images/rebel-back.png" />
       </head>
       <body>
         <LenisProvider>
