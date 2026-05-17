@@ -56,7 +56,7 @@ export function LetterformsSection() {
           whileHover={{ scale: 1.04, rotate: 0, transition: { duration: 0.3 } }}
         >
           <div style={{ transform: `rotate(${card.rotate}deg)` }}>
-            {/* Image */}
+            {/* Image — edge-dissolve vignette makes the card "float" without a visible box */}
             <div className="relative overflow-hidden" style={{ width: card.w, height: card.h, background: card.bg }}>
               <Image
                 src={card.image}
@@ -65,6 +65,18 @@ export function LetterformsSection() {
                 className="object-cover object-top"
                 sizes={`${card.w}px`}
                 style={{ filter: 'brightness(1.05)' }}
+              />
+              {/*
+               * Radial vignette overlay: transparent at center (product visible),
+               * fades to page bg (#0A0A0A) at edges. Dissolves the rectangular box
+               * boundary into the dark canvas — product appears to float.
+               */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(ellipse 85% 80% at 50% 45%, transparent 35%, #0A0A0A 82%)',
+                  zIndex: 2,
+                }}
               />
             </div>
 

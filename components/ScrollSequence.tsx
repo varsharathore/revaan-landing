@@ -178,10 +178,10 @@ export function ScrollSequence() {
                   filter: 'blur(24px)',
                 }} />
 
-                {/* Container bg matches image bg — edges dissolve cleanly */}
+                {/* Container bg matches image bg so hard edges disappear */}
                 <div
-                  className="relative"
-                  style={{ width: 280, height: 340, flexShrink: 0, background: scene.productBg, borderRadius: 2 }}
+                  className="relative overflow-hidden"
+                  style={{ width: 280, height: 340, flexShrink: 0, background: scene.productBg }}
                 >
                   <Image
                     src={scene.productImage}
@@ -189,6 +189,17 @@ export function ScrollSequence() {
                     fill
                     className="object-contain"
                     sizes="280px"
+                  />
+                  {/*
+                   * Vignette: fades the productBg edges into #111 (right panel bg).
+                   * Product floats — no visible rectangle.
+                   */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'radial-gradient(ellipse 80% 75% at 50% 48%, transparent 30%, #111111 80%)',
+                      zIndex: 2,
+                    }}
                   />
                 </div>
               </div>

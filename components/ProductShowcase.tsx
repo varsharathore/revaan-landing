@@ -109,9 +109,9 @@ export function ProductShowcase() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.08 }}
             >
-              {/* Image — no card bg, no border (philosophy §6: "no card backgrounds") */}
+              {/* Image — vignette dissolves edges into page bg. No visible box. */}
               <div
-                className="relative overflow-hidden mb-3 transition-opacity duration-300 group-hover:opacity-85"
+                className="relative overflow-hidden mb-3 transition-opacity duration-300 group-hover:opacity-90"
                 style={{ height: p.h, background: '#0A0A0A' }}
               >
                 <Image
@@ -121,6 +121,17 @@ export function ProductShowcase() {
                   className={`object-${p.fit} object-top transition-transform duration-700 group-hover:scale-[1.04]`}
                   sizes="220px"
                   style={{ filter: 'brightness(1.08) contrast(1.02)' }}
+                />
+                {/* Edge vignette — fades image edges into #0A0A0A. Strongest at bottom. */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `
+                      linear-gradient(to bottom, transparent 50%, #0A0A0A 100%),
+                      linear-gradient(to right, #0A0A0A, transparent 12%, transparent 88%, #0A0A0A)
+                    `,
+                    zIndex: 2,
+                  }}
                 />
               </div>
 
