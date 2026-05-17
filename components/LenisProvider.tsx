@@ -7,23 +7,33 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
       /*
-       * lerp: lower = slower deceleration = more liquid/YSL feel.
-       * 0.06: each frame moves 6% of remaining distance to target.
-       * Feels like scrolling through thick oil — natural momentum stop.
+       * normalizeWheel: true — the key to device-independent scroll.
+       *
+       * Without it: raw wheelDelta varies wildly per device.
+       *   MacBook trackpad:  sends ~5-10px per event, hundreds of events (momentum)
+       *   Magic Mouse:       sends ~20-50px per event
+       *   USB scroll wheel:  sends ~100px per event (one click = one event)
+       *   Windows touchpad:  yet another scale
+       *
+       * With it: Lenis clamps all deltas to a consistent ~100px equivalent.
+       * Every device now speaks the same language before wheelMultiplier scales it.
        */
-      lerp: 0.06,
+      normalizeWheel: true,
 
       /*
-       * wheelMultiplier: scales incoming wheel/trackpad delta.
-       * macOS trackpad generates ~300-600px cumulative delta per swipe.
-       * At 0.5: a 400px swipe moves the page 200px — much more controlled.
-       * Was 0.9 → 1 swipe = ~2 sections. Now 0.5 → 1 swipe = ~1 section.
+       * wheelMultiplier now scales a NORMALIZED value, not a device-specific one.
+       * 1.0 on normalized input = consistent across all devices.
+       * Tune this one number and it behaves the same everywhere.
        */
-      wheelMultiplier: 0.5,
+      wheelMultiplier: 1.0,
 
-      // Touch feels natural at 1.0 — same sensitivity as native
+      /*
+       * lerp: proportional deceleration each frame.
+       * 0.07 = moves 7% of remaining distance per frame → natural momentum stop.
+       */
+      lerp: 0.07,
+
       touchMultiplier: 1.0,
-
       smoothWheel: true,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
