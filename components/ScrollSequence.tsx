@@ -135,6 +135,15 @@ export function ScrollSequence() {
                 sizes="65vw"
                 priority={i === 0}
               />
+              {/* Blend gradient: photo right edge → cream, hides the hard seam */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute', top: 0, right: 0, bottom: 0, width: '22%',
+                  background: `linear-gradient(to right, transparent, ${PANEL})`,
+                  zIndex: 2, pointerEvents: 'none',
+                }}
+              />
               {/* Watermark number — dark on light photos */}
               <span className="absolute bottom-6 left-8 select-none pointer-events-none" style={{
                 fontFamily: BEBAS, fontSize: 'clamp(100px, 16vw, 200px)',
@@ -177,8 +186,9 @@ export function ScrollSequence() {
                 {scene.showScript && (
                   <span style={{
                     fontFamily: SCRIPT, fontWeight: 400,
-                    fontSize: 'clamp(22px, 2.8vw, 40px)',
+                    fontSize: 'clamp(34px, 5vw, 72px)',
                     color: scene.scriptColor, lineHeight: 1, display: 'block',
+                    opacity: 0.75,
                   }}>{scene.script}</span>
                 )}
 
