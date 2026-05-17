@@ -150,27 +150,6 @@ export function MaterialsAccordion() {
             VIEW ALL ↗
           </motion.a>
 
-          {/* "Craft" script — inside left column so top is fixed px, never shifts when accordion opens */}
-          <motion.div
-            className="absolute pointer-events-none select-none"
-            style={{ top: 250, left: 40, zIndex: 10, whiteSpace: 'nowrap' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span
-              style={{
-                fontFamily: SCRIPT,
-                fontWeight: 400,
-                fontSize: 'clamp(70px, 10vw, 140px)',
-                color: 'var(--accent)',
-                lineHeight: 1,
-                opacity: 0.92,
-              }}
-            >
-              Craft
-            </span>
-          </motion.div>
         </motion.div>
 
         {/* RIGHT — section title + body + accordion */}
@@ -180,26 +159,41 @@ export function MaterialsAccordion() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <p
-            className="font-body tracking-[0.3em] uppercase mb-3"
-            style={{ color: 'var(--accent)', fontSize: 11 }}
-          >
-            Craft
-          </p>
-
-          {/* Bleed heading — clips right edge */}
-          <div style={{ overflow: 'hidden', marginBottom: '-0.5rem' }}>
-            <h2
+          {/* Yellowtail "Craft" overlaps the 280 GSM heading — editorial typographic moment */}
+          <div className="relative" style={{ marginBottom: '0.5rem' }}>
+            <motion.span
+              className="pointer-events-none select-none"
               style={{
-                fontFamily: BEBAS,
-                fontSize: 'clamp(56px, 9vw, 9999px)',
-                color: 'var(--text-primary)',
-                lineHeight: 0.88,
-                whiteSpace: 'nowrap',
+                fontFamily: SCRIPT,
+                fontWeight: 400,
+                fontSize: 'clamp(50px, 7vw, 100px)',
+                color: 'var(--accent)',
+                lineHeight: 1,
+                opacity: 0.9,
+                display: 'block',
+                marginBottom: '-0.3em',
               }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 0.9, y: 0 } : {}}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              280 GSM PREMIUM
-            </h2>
+              Craft
+            </motion.span>
+
+            {/* Bleed heading — clips right edge */}
+            <div style={{ overflow: 'hidden' }}>
+              <h2
+                style={{
+                  fontFamily: BEBAS,
+                  fontSize: 'clamp(56px, 9vw, 9999px)',
+                  color: 'var(--text-primary)',
+                  lineHeight: 0.88,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                280 GSM PREMIUM
+              </h2>
+            </div>
           </div>
 
           <p
