@@ -92,7 +92,7 @@ export function ScrollSequence() {
         end: `+=${scenes.length * 100}vh`,
         pin: container,
         anticipatePin: 1,
-        scrub: 2,
+        scrub: 1,   // was 2; Lenis lerp:0.08 already adds smoothness — no double lag
         onUpdate: (self) => {
           setProgress(self.progress)
           const idx = Math.min(Math.floor(self.progress * scenes.length), scenes.length - 1)

@@ -22,22 +22,18 @@ export function StatementSection() {
       trigger: section,
       start: 'top bottom',
       end: 'bottom top',
-      scrub: 1.2,
+      scrub: 1,
     }
 
-    // "DESIGNED" — moves up fastest (1.3× scroll speed = editorial depth foreground)
-    gsap.to(line1Ref.current, { y: -120, ease: 'none', scrollTrigger: config })
+    const sts = [
+      gsap.to(line1Ref.current, { y: -120, ease: 'none', scrollTrigger: config }),
+      gsap.to(line2Ref.current, { y: -70,  ease: 'none', scrollTrigger: config }),
+      gsap.to(imgRef.current,   { y: -30,  ease: 'none', scrollTrigger: config }),
+      gsap.to(bodyRef.current,  { y: -50,  ease: 'none', scrollTrigger: config }),
+    ]
 
-    // "TO REBEL" — moves slightly slower (mid-layer)
-    gsap.to(line2Ref.current, { y: -70, ease: 'none', scrollTrigger: config })
-
-    // Product image — slowest (background layer, floats behind text speed)
-    gsap.to(imgRef.current, { y: -30, ease: 'none', scrollTrigger: config })
-
-    // Body copy — neutral speed
-    gsap.to(bodyRef.current, { y: -50, ease: 'none', scrollTrigger: config })
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill())
+    // Kill only THIS section's ScrollTriggers — not the scroll sequence pin
+    return () => sts.forEach(t => t.scrollTrigger?.kill())
   }, [])
 
   return (
