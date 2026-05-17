@@ -112,7 +112,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/png-iphone/wavy-duo.png"
+              src="/images/png-iphone/liar-man-solo.png"
               alt="Revaan tee"
               fill
               className="object-contain object-bottom img-blend"
@@ -130,7 +130,7 @@ export function AboutSection() {
             data-cursor-enlarge
           >
             <Image
-              src="/images/png-iphone/liar-group.png"
+              src="/images/png-iphone/wavy-duo.png"
               alt="Revaan tee"
               fill
               className="object-contain object-bottom img-blend"

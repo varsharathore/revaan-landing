@@ -93,8 +93,8 @@ export function StatementSection() {
               filter: 'blur(20px)',
             }} />
             <Image
-              src="/images/png-iphone/rebel-back.png"
-              alt="Revaan oversized tee — BE UNAPOLOGETIC"
+              src="/images/png-iphone/liar-group.png"
+              alt="F*cking Liar tee — group"
               fill
               className="object-cover relative z-10"
               sizes="260px"

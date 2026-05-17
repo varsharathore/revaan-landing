@@ -66,7 +66,7 @@ export function LetterformsSection() {
       >
         <div
           className="relative overflow-hidden"
-          style={{ width: '100%', aspectRatio: '3/4', background: '#F5F2EE' }}
+          style={{ width: '100%', aspectRatio: '3/4', background: 'transparent' }}
         >
           <Image
             src="/images/png-iphone/rebel-woman-solo.png"
@@ -104,11 +104,11 @@ export function LetterformsSection() {
       >
         <div
           className="relative overflow-hidden"
-          style={{ width: '100%', aspectRatio: '3/4', background: '#EFECEA' }}
+          style={{ width: '100%', aspectRatio: '3/4', background: 'transparent' }}
         >
           <Image
-            src="/images/png-iphone/liar-man-solo.png"
-            alt="F*cking Liar tee"
+            src="/images/png-iphone/wavy-duo.png"
+            alt="Wavy Core tee"
             fill
             className="object-contain img-blend"
             sizes="190px"

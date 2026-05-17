@@ -128,7 +128,7 @@ export function MaterialsAccordion() {
               data-cursor-enlarge
             >
               <Image
-                src="/images/png-iphone/rebel-back.png"
+                src="/images/png-iphone/liar-man-solo.png"
                 alt="Revaan oversized fit"
                 fill
                 className="object-contain object-bottom img-blend"
