@@ -56,7 +56,7 @@ export default function RootLayout({
       <head>
         {/* Preload hero scene images */}
         <link rel="preload" as="image" href="/images/insta-rebel-warehouse.jpg" />
-        <link rel="preload" as="image" href="/images/insta-pulpy-woman-transparent.jpg" />
+        <link rel="preload" as="image" href="/images/insta-pulpy-woman.jpg" />
         <link rel="preload" as="image" href="/images/png-iphone/wavy-duo.png" />
         <link rel="preload" as="image" href="/images/png-iphone/liar-group.png" />
         <link rel="preload" as="image" href="/images/png-iphone/rebel-back.png" />
