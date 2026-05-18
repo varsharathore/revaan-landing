@@ -92,15 +92,15 @@ export function MaterialsAccordion() {
     <section
       id="craft"
       ref={ref}
-      className="relative overflow-hidden"
+      className="craft-section relative overflow-hidden"
       style={{ background: 'var(--bg)', padding: '80px 0 100px' }}
     >
       {/* ── Main grid: left image collage | right content ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '44% 56%', alignItems: 'start' }}>
+      <div className="craft-grid" style={{ display: 'grid', gridTemplateColumns: '44% 56%', alignItems: 'start' }}>
 
         {/* LEFT — editorial image stagger, matches Behance layout */}
         <motion.div
-          className="relative"
+          className="craft-images relative"
           style={{ paddingLeft: 64, paddingRight: 20 }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -155,6 +155,7 @@ export function MaterialsAccordion() {
 
         {/* RIGHT — section title + body + accordion */}
         <motion.div
+          className="craft-right"
           style={{ paddingRight: 64, paddingLeft: 24, paddingTop: '1rem' }}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -184,6 +185,7 @@ export function MaterialsAccordion() {
             {/* Bleed heading — clips right edge */}
             <div style={{ overflow: 'hidden' }}>
               <h2
+                className="craft-heading"
                 style={{
                   fontFamily: BEBAS,
                   fontSize: 'clamp(56px, 9vw, 9999px)',

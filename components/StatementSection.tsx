@@ -39,7 +39,7 @@ export function StatementSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden"
+      className="statement-section relative overflow-hidden"
       style={{ padding: '80px 64px 10px', background: 'var(--bg)' }}
     >
       <div className="relative">
@@ -82,7 +82,7 @@ export function StatementSection() {
         {/* Layer 2 (product image) — sits over the display text, moves 0.7× */}
         <div
           ref={imgRef}
-          className="absolute top-0 right-0"
+          className="statement-img absolute top-0 right-0"
           style={{ width: 'clamp(220px, 30vw, 440px)', zIndex: 10 }}
         >
           <div className="relative" style={{ aspectRatio: '3/4' }}>

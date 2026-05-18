@@ -28,7 +28,7 @@ export function Reviews() {
   return (
     <section
       ref={ref}
-      className="px-8 md:px-16 flex flex-col items-center text-center"
+      className="reviews-section px-8 md:px-16 flex flex-col items-center text-center"
       style={{ background: 'var(--bg-panel)', padding: '80px 64px' }}
     >
       <AnimatePresence mode="wait">

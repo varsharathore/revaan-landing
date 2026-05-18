@@ -20,13 +20,13 @@ export function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative"
+      className="about-section relative"
       style={{ background: 'var(--bg)', padding: '80px 64px 80px' }}
     >
       <div className="relative">
         {/* Script "About" — overlaps grid top. Layer 4 (above images). */}
         <motion.h2
-          className="select-none absolute"
+          className="about-script select-none absolute"
           style={{
             fontFamily: SCRIPT,
             fontWeight: 400,
@@ -51,6 +51,7 @@ export function AboutSection() {
          * Three images move at three different scroll speeds → depth.
          */}
         <div
+          className="about-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: '1.4fr 0.9fr 1.4fr 1.4fr',
@@ -60,7 +61,7 @@ export function AboutSection() {
         >
           {/* Image 1 — slowest parallax (deepest layer) */}
           <motion.div
-            className="relative overflow-hidden"
+            className="about-img1 relative overflow-hidden"
             style={{ aspectRatio: '3/5', gridColumn: '1', marginTop: '3rem', y: y1 }}
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
@@ -78,7 +79,7 @@ export function AboutSection() {
 
           {/* Text block — sits between images in same plane */}
           <motion.div
-            className="flex flex-col justify-end"
+            className="about-text flex flex-col justify-end"
             style={{ gridColumn: '2', paddingTop: '10rem', paddingBottom: '1rem' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -104,7 +105,7 @@ export function AboutSection() {
 
           {/* Image 2 — mid parallax */}
           <motion.div
-            className="relative overflow-hidden"
+            className="about-img2 relative overflow-hidden"
             style={{ aspectRatio: '3/4', gridColumn: '3', marginTop: '6rem', y: y2 }}
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
@@ -122,7 +123,7 @@ export function AboutSection() {
 
           {/* Image 3 — fastest parallax (surface layer) */}
           <motion.div
-            className="relative overflow-hidden"
+            className="about-img3 relative overflow-hidden"
             style={{ aspectRatio: '2/3', gridColumn: '4', marginTop: '1.5rem', y: y3 }}
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}

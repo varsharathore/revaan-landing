@@ -126,10 +126,10 @@ export function ScrollSequence() {
           <div
             key={i}
             ref={(el) => { sceneRefs.current[i] = el }}
-            className="absolute inset-0 flex"
+            className="ms-scene absolute inset-0 flex"
           >
             {/* ── LEFT 65%: lifestyle image — bg matches right panel ── */}
-            <div className="relative overflow-hidden" style={{ width: '65%', background: PANEL }}>
+            <div className="ms-left relative overflow-hidden" style={{ width: '65%', background: PANEL }}>
               <Image
                 src={scene.leftImage}
                 alt={scene.leftAlt}
@@ -148,7 +148,7 @@ export function ScrollSequence() {
                 }}
               />
               {/* Watermark number — dark on light photos */}
-              <span className="absolute bottom-6 left-8 select-none pointer-events-none" style={{
+              <span className="ms-num absolute bottom-6 left-8 select-none pointer-events-none" style={{
                 fontFamily: BEBAS, fontSize: 'clamp(100px, 16vw, 200px)',
                 color: 'rgba(20,18,16,0.06)', lineHeight: 1,
               }}>{scene.num}</span>
@@ -160,11 +160,11 @@ export function ScrollSequence() {
 
             {/* ── RIGHT 35%: bg = exact product photo background ── */}
             <div
-              className="flex flex-col relative"
+              className="ms-right flex flex-col relative"
               style={{ width: '35%', background: scene.panelBg }}
             >
               {/* Product — fills flex-1 so model is as tall as the panel allows */}
-              <div className="flex-1 relative overflow-hidden" style={{ minHeight: 0 }}>
+              <div className="ms-product flex-1 relative overflow-hidden" style={{ minHeight: 0 }}>
                 <Image
                   src={scene.productImage}
                   alt={scene.productAlt}
@@ -190,7 +190,7 @@ export function ScrollSequence() {
                   }}>{scene.script}</span>
                 )}
 
-                <h2 style={{
+                <h2 className="ms-headline" style={{
                   fontFamily: BEBAS,
                   fontSize: 'clamp(52px, 8vw, 9999px)',
                   color: scene.textHead,

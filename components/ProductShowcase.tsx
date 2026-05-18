@@ -31,9 +31,9 @@ export function ProductShowcase() {
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'], { clamp: true })
 
   return (
-    <section id="collection" ref={ref} style={{ background: 'var(--bg)', padding: '20px 0 0' }}>
+    <section id="collection" ref={ref} className="showcase-section" style={{ background: 'var(--bg)', padding: '20px 0 0' }}>
       {/* Heading */}
-      <div className="px-8 md:px-16 flex items-end gap-8 mb-10">
+      <div className="showcase-heading px-8 md:px-16 flex items-end gap-8 mb-10">
         <div className="relative" style={{ paddingTop: '2.5rem' }}>
           <span style={{
             fontFamily: SCRIPT,

@@ -18,7 +18,7 @@ export function Drop01Section() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden"
+      className="drop01-section relative overflow-hidden"
       style={{ background: '#0F0D0C', padding: '100px 64px 80px' }}
     >
       {/* Faint brand texture — cow art as ghost bg */}
@@ -48,6 +48,7 @@ export function Drop01Section() {
               WebkitTextStroke: '1px rgba(245,240,232,0.15)',
             }}
             initial={{ y: '110%' }}
+            className="drop01-heading"
             animate={inView ? { y: 0 } : {}}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -57,7 +58,7 @@ export function Drop01Section() {
 
         {/* Yellowtail script — overlaps the display type */}
         <motion.span
-          className="block select-none pointer-events-none"
+          className="drop01-script block select-none pointer-events-none"
           style={{
             fontFamily: SCRIPT,
             fontWeight: 400,
@@ -95,6 +96,7 @@ export function Drop01Section() {
 
         {/* Stats row */}
         <motion.div
+          className="drop01-stats"
           style={{ display: 'flex', gap: '4vw' }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

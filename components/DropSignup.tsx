@@ -19,7 +19,7 @@ export function DropSignup() {
     <section
       id="drop"
       ref={ref}
-      className="relative flex flex-col items-center text-center"
+      className="dropsignup-section relative flex flex-col items-center text-center"
       style={{ background: 'var(--bg)', padding: '80px 32px', overflow: 'hidden' }}
     >
       {/* "DROP" — faint background texture only. 2% opacity. */}

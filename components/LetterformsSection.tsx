@@ -23,7 +23,7 @@ export function LetterformsSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden"
+      className="letterforms-section relative overflow-hidden"
       style={{ height: '100vh', background: 'var(--bg)', padding: 0 }}
     >
       {/* REVAAN — centered, bleeds both edges */}
