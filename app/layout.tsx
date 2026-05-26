@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import { Bebas_Neue, Anton, Yellowtail, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LenisProvider } from '@/components/LenisProvider'
-import { CustomCursor } from '@/components/CustomCursor'
-import { Preloader } from '@/components/Preloader'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -54,17 +52,10 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${anton.variable} ${yellowtail.variable} ${dmSans.variable}`}
     >
       <head>
-        {/* Preload hero scene images */}
-        <link rel="preload" as="image" href="/images/insta-rebel-warehouse.jpg" />
-        <link rel="preload" as="image" href="/images/insta-pulpy-woman.jpg" />
-        <link rel="preload" as="image" href="/images/png-iphone/wavy-duo.png" />
-        <link rel="preload" as="image" href="/images/png-iphone/liar-group.png" />
-        <link rel="preload" as="image" href="/images/png-iphone/rebel-back.png" />
+        <link rel="preload" as="image" href="/images/pulpy-group.png" />
       </head>
       <body>
         <LenisProvider>
-          <Preloader />
-          <CustomCursor />
           {children}
         </LenisProvider>
       </body>
