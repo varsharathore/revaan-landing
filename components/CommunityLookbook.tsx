@@ -3,39 +3,45 @@ import Link from 'next/link'
 
 const posts = [
   {
+    handle: '@rahul.street',
+    image: '/ai-images/lookbook-rebel-man-outdoor.png',
+    alt: 'Rebel With Revaan tee — outdoor editorial',
+    aspect: 'aspect-[3/4]',
+  },
+  {
+    handle: '@priya.wavs',
+    image: '/images/liar-1.jpg',
+    alt: 'F*cking Liar Tee — trio in red',
+    aspect: 'aspect-[4/5]',
+  },
+  {
     handle: '@meher.j',
-    image: '/images/insta-pulpy-woman-full.jpg',
-    alt: 'Pulpy Revaan tee — street style',
+    image: '/images/pulpy-1.jpg',
+    alt: 'Pulpy Revaan tee — orange editorial',
     aspect: 'aspect-[3/4]',
   },
   {
-    handle: '@bandra_kid',
-    image: '/images/insta-being-me.jpg',
-    alt: 'Revaan — be unapologetic',
+    handle: '@nina.acid',
+    image: '/ai-images/lookbook-wavy-woman-studio.png',
+    alt: 'Wavy Core tee — studio editorial',
     aspect: 'aspect-[4/5]',
   },
   {
-    handle: '@aaravsmoke',
-    image: '/images/insta-rebel-print-closeup.jpg',
-    alt: 'Rebel Rebel puff print detail',
-    aspect: 'aspect-square',
-  },
-  {
-    handle: '@dilli.dani',
-    image: '/images/insta-unapologetic-texture.jpg',
-    alt: 'Unapologetic Tee — black on black',
-    aspect: 'aspect-[4/5]',
-  },
-  {
-    handle: '@arushistreet',
-    image: '/images/insta-being-me-dark.jpg',
-    alt: 'Revaan — built different',
+    handle: '@deepika.dilli',
+    image: '/images/citybeats-2.jpg',
+    alt: 'City Beats tee — editorial pose',
     aspect: 'aspect-[3/4]',
   },
   {
-    handle: '@rebel.syd',
-    image: '/images/insta-pulpy-woman.jpg',
-    alt: 'Pulpy Revaan — drop culture',
+    handle: '@karan.unapologetic',
+    image: '/images/wavy-1.jpg',
+    alt: 'Wavy Core — be unapologetic couple',
+    aspect: 'aspect-[4/5]',
+  },
+  {
+    handle: '@liar.girl',
+    image: '/ai-images/lookbook-liar-woman-solo.png',
+    alt: 'F*cking Liar Tee — solo editorial',
     aspect: 'aspect-[3/4]',
   },
 ]
