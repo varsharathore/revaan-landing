@@ -58,62 +58,65 @@ function InstagramIcon() {
 
 export function CommunityLookbook() {
   return (
-    <section className="bg-[#F8F5F2] py-14 md:py-20 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+    <section className="bg-[#F8F5F2] py-10 md:py-14 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto">
 
         {/* Header */}
-        <div className="mb-8 md:mb-10">
-          <p className="text-[10.5px] font-bold tracking-[0.28em] text-black/40 uppercase mb-3 flex items-center gap-3">
-            <span className="block w-8 h-px bg-black/25" />
-            #WornWithRevaan
-          </p>
-          <div className="flex items-end gap-4 sm:gap-5 flex-wrap">
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-[5rem] xl:text-[5.5rem] text-black uppercase leading-none tracking-wide">
-              Worn by the Unapologetic
-            </h2>
+        <div className="px-4 sm:px-6 lg:px-10 mb-6">
+          <div className="flex items-end justify-between gap-4 flex-wrap">
+            <div>
+              <p className="text-[10.5px] font-bold tracking-[0.28em] text-black/40 uppercase mb-2 flex items-center gap-3">
+                <span className="block w-8 h-px bg-black/25" />
+                #WornWithRevaan
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-black uppercase leading-none tracking-wide">
+                Worn by the Unapologetic
+              </h2>
+            </div>
+            <Link
+              href="https://instagram.com/berevaan_official"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-2 border border-black text-black text-[10.5px] font-bold uppercase tracking-[0.18em] px-5 py-3 hover:bg-black hover:text-white transition-all duration-300 group flex-shrink-0"
+            >
+              <InstagramIcon />
+              Follow us
+              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+            </Link>
           </div>
-          <p className="text-black/45 text-[13px] font-body mt-3">
-            Real fits. Real attitude. Tag us to get featured.
-          </p>
         </div>
 
-        {/* Masonry grid */}
-        <div className="columns-2 sm:columns-3 lg:columns-3 gap-3 md:gap-4">
+        {/* Horizontal film strip */}
+        <div className="flex gap-2 md:gap-2.5 overflow-x-auto pl-4 sm:pl-6 lg:pl-10 pr-4 pb-2 scrollbar-hide">
           {posts.map((post, i) => (
             <div
               key={i}
-              className="break-inside-avoid mb-3 md:mb-4 relative group overflow-hidden cursor-pointer"
+              className="relative flex-shrink-0 w-44 sm:w-52 md:w-60 h-72 sm:h-80 md:h-[360px] group overflow-hidden cursor-pointer bg-[#E8E4DF]"
             >
-              <div className={`relative ${post.aspect} overflow-hidden bg-[#E8E4DF]`}>
-                <Image
-                  src={post.image}
-                  alt={post.alt}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent pt-10 pb-3 px-3">
-                  <span className="text-white text-[11px] font-semibold tracking-wide drop-shadow-sm">
-                    {post.handle}
-                  </span>
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              <Image
+                src={post.image}
+                alt={post.alt}
+                fill
+                sizes="240px"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent pb-3 px-3 pt-8">
+                <span className="text-white text-[10.5px] font-semibold tracking-wide drop-shadow-sm">
+                  {post.handle}
+                </span>
               </div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
           ))}
         </div>
 
-        {/* CTA row */}
-        <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-black/8 pt-8">
-          <p className="text-sm text-black/50 text-center sm:text-left font-body">
-            Wear it. Tag it. Get featured.{' '}
-            <span className="text-black font-semibold">#WornWithRevaan</span>
-          </p>
+        {/* Mobile CTA */}
+        <div className="px-4 mt-5 sm:hidden">
           <Link
             href="https://instagram.com/berevaan_official"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 border border-black text-black text-[11px] font-bold uppercase tracking-[0.18em] px-6 py-3.5 hover:bg-black hover:text-white transition-all duration-300 group"
+            className="inline-flex items-center gap-2 border border-black text-black text-[10.5px] font-bold uppercase tracking-[0.18em] px-5 py-3 hover:bg-black hover:text-white transition-all duration-300 group"
           >
             <InstagramIcon />
             Follow @berevaan_official
